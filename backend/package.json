@@ -1,0 +1,37 @@
+{
+  "name": "diva-js-reference-3p-backend",
+  "version": "1.0.0",
+  "description": "A backend for a reference implementation that uses the Diva SDK to verify IRMA attributes.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon -e js,html src/server.js",
+    "prod": "node src/server.js",
+    "lint": "eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "private": true,
+  "keywords": [
+    "irma",
+    "attributes",
+    "privacy",
+    "identity",
+    "management"
+  ],
+  "contributors": [
+    "Koen van Ingen",
+    "Timen Olthof",
+    "Alliander N.V. (https://alliander.com/)"
+  ],
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "express": "4.16.1"
+  },
+  "devDependencies": {
+    "eslint": "4.8.0",
+    "eslint-config-airbnb": "15.1.0",
+    "eslint-plugin-import": "2.7.0",
+    "eslint-plugin-jsx-a11y": "5.1.1",
+    "eslint-plugin-react": "7.4.0"
+  }
+}
