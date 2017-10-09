@@ -25,7 +25,9 @@
   ],
   "license": "BSD-3-Clause",
   "dependencies": {
-    "express": "4.16.1"
+    "cookie-encrypter": "0.2.3",
+    "cookie-parser": "1.4.3",
+    "express": "4.16.1",
   },
   "devDependencies": {
     "eslint": "4.8.0",
