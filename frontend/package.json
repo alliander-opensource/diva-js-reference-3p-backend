@@ -1,0 +1,43 @@
+{
+  "name": "diva-js-reference-3p-frontend",
+  "version": "1.0.0",
+  "description": "A frontend for a reference implementation that uses the Diva SDK to verify IRMA attributes.",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Alliander/diva-js.git"
+  },
+  "dependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-scripts": "1.0.14"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "lint": "./node_modules/.bin/eslint -c .eslintrc src",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "keywords": [
+    "irma",
+    "attributes",
+    "privacy",
+    "identity",
+    "management"
+  ],
+  "contributors": [
+    "Koen van Ingen",
+    "Timen Olthof",
+    "Alliander N.V. (https://alliander.com/)"
+  ],
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "eslint": "4.8.0",
+    "eslint-config-airbnb": "15.1.0",
+    "eslint-plugin-import": "2.7.0",
+    "eslint-plugin-jsx-a11y": "5.1.1",
+    "eslint-plugin-react": "7.4.0"
+  }
+}
