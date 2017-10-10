@@ -1,20 +1,16 @@
-# diva-js-reference-3p
+# diva-js-reference-3p-backend
 
-This repository contains an example/reference implementation using [diva-irma-js](https://github.com/Alliander/diva-irma-js)
+This repository contains an example/reference backend implementation using [diva-irma-js](https://github.com/Alliander/diva-irma-js)
 DIVA is an SDK to easily integrate [IRMA attributes](https://privacybydesign.foundation/irma-controleur/) into NodeJS based applications.
+
+The frontend of this reference implementation can be found in [diva-js-reference-3p-frontend](https://github.com/Alliander/diva-js-reference-3p-frontend).
 
 ## Features
 
 ...
 
-## Frontend
+## Starting the application
 
-`cd frontend`
-`npm start`
-
-## Backend
-
-`cd backend`
 `npm start`
 
 ## IRMA
