@@ -27,10 +27,10 @@
   "dependencies": {
     "cookie-encrypter": "0.2.3",
     "cookie-parser": "1.4.3",
-    "diva-irma-js": "1.0.0",
+    "diva-irma-js": "git+https://github.com/Alliander/diva-irma-js.git",
     "express": "4.16.1",
     "passport": "0.4.0",
-    "passport-diva": "1.0.0"
+    "passport-diva": "git+https://github.com/Alliander/passport-diva.git"
   },
   "devDependencies": {
     "eslint": "4.8.0",
