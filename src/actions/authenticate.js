@@ -18,6 +18,7 @@ const cookieSettings = {
  * @returns {undefined}
  */
 exports = module.exports = function requestHandler(req, res) {
+  // This is just for now to test and will be removed once we connect IRMA
   // Process proofs
   let proofs;
   if (req.query.proof) {

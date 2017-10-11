@@ -24,6 +24,7 @@ app.get('/api/authenticate', require('./actions/authenticate'));
 app.get('/api/get-session', require('./actions/get-session'));
 app.get('/api/deauthenticate', require('./actions/deauthenticate'));
 
+app.use('/api/only-for-x', diva.requireAttribute("x"), require('./actions/only-for-x'));
 
 app.listen(port, () => {
   console.log(`Diva Reference Third Party backend listening on port ${port} !`); // eslint-disable-line no-console
