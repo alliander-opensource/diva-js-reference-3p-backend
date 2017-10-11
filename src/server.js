@@ -1,11 +1,11 @@
 const express = require('express');
+const passport = require('passport');
+const diva = require('diva-irma-js');
+const DivaCookieStrategy = require('passport-diva');
 const cookieParser = require('cookie-parser');
 const cookieEncrypter = require('cookie-encrypter');
 
-const diva = require('diva-irma-js');
-
 const port = 4000;
-const generateSessionId = () => 1; // TODO: generate sensible session ids
 const secretKey = 'StRoNGs3crE7'; // TODO: use secure password from config
 const divaCookieName = 'diva-session';
 const cookieSettings = {
@@ -20,24 +20,13 @@ const app = express();
 app.use(cookieParser(secretKey));
 app.use(cookieEncrypter(secretKey));
 
-app.get('/authenticate', (req, res) => {
-  // Load session state from encrypted cookie
-  // NOTE: does some naive structural checks
-  let sessionState;
-  if (typeof req.signedCookies[divaCookieName] === 'undefined' ||
-      typeof req.signedCookies[divaCookieName].user === 'undefined' ||
-      typeof req.signedCookies[divaCookieName].user.sessionId === 'undefined' ||
-      typeof req.signedCookies[divaCookieName].user.attributes === 'undefined') {
-    sessionState = {
-      user: {
-        sessionId: generateSessionId(),
-        attributes: [],
-      },
-    };
-  } else {
-    sessionState = req.signedCookies[divaCookieName];
-  }
+app.use(passport.initialize());
+passport.use(new DivaCookieStrategy());
+app.use(passport.authenticate('diva', { session: false }));
+// Note: session is set to false to be stateless.
+// Optionally passport provides ways to serialize session data so the cookies are smaller.
 
+app.get('/authenticate', (req, res) => {
   // Process proofs
   let proofs;
   if (req.query.proof) {
@@ -52,13 +41,13 @@ app.get('/authenticate', (req, res) => {
 
     // Add proofs to session sessionState
     proofs.forEach((proof) => {
-      sessionState.user.attributes.push(proof);
+      diva.addProof(req.divaSessionState, proof);
     });
   }
-  res.cookie(divaCookieName, sessionState, cookieSettings);
+  res.cookie(divaCookieName, req.divaSessionState, cookieSettings);
 
   // Display session state
-  return res.json(sessionState);
+  return res.json(req.divaSessionState);
 });
 
 app.listen(port, () => {
