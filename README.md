@@ -9,9 +9,14 @@ The frontend of this reference implementation can be found in [diva-js-reference
 
 ...
 
-## Starting the application
+## Running the application
 
 `npm start`
+
+## For development
+
+`npm install -g nodemon`
+and use `npm run dev` instead of `npm start`
 
 ## IRMA
 
