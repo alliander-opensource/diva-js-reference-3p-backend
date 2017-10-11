@@ -17,8 +17,8 @@ const cookieSettings = {
  * @param {object} res Express response object
  * @returns {undefined}
  */
-exports = module.exports = function requestHandler(req, res) {
+module.exports = function requestHandler(req, res) {
   req.divaSessionState = diva.deauthenticate();
   res.cookie(divaCookieName, req.divaSessionState, cookieSettings);
   res.json(req.divaSessionState);
-}
+};

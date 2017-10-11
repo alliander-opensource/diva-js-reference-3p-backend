@@ -17,7 +17,7 @@ const cookieSettings = {
  * @param {object} res Express response object
  * @returns {undefined}
  */
-exports = module.exports = function requestHandler(req, res) {
+module.exports = function requestHandler(req, res) {
   // This is just for now to test and will be removed once we connect IRMA
   // Process proofs
   let proofs;
@@ -40,4 +40,4 @@ exports = module.exports = function requestHandler(req, res) {
 
   // Display session state
   return res.json(req.divaSessionState);
-}
+};
