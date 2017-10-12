@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cookieEncrypter = require('cookie-encrypter');
 const diva = require('diva-irma-js');
@@ -12,10 +13,12 @@ app.use(cookieParser(cookieSecret));
 app.use(cookieEncrypter(cookieSecret));
 app.use(diva);
 
+app.use(bodyParser.text()); // TODO: restrict to one endpoint
 
 app.get('/api/authenticate', require('./actions/authenticate'));
 app.get('/api/get-session', require('./actions/get-session'));
 app.get('/api/deauthenticate', require('./actions/deauthenticate'));
+app.post('/api/add-proof/:sessionToken', require('./actions/add-proof'));
 
 app.get('/api/attributes-required', require('./actions/attributes-required'));
 
