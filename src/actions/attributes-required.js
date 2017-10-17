@@ -20,7 +20,7 @@ module.exports = function requestHandler(req, res) {
           case 'qr':
           default:
             res.setHeader('Content-type', 'image/png');
-            res.setHeader('Content-Disposition', 'inline; filename="filename.pdf"'); // Note: to force display in browser
+            res.setHeader('Content-Disposition', 'inline; filename="qr.png"'); // Note: to force display in browser
             qr.image(qrContent, { type: 'png' }).pipe(res);
             break;
         }
