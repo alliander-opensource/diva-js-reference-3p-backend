@@ -29,8 +29,7 @@
     "cookie-parser": "1.4.3",
     "diva-irma-js": "git+https://github.com/Alliander/diva-irma-js.git",
     "express": "4.16.1",
-    "passport": "0.4.0",
-    "passport-diva": "git+https://github.com/Alliander/passport-diva.git"
+    "qr-image": "3.2.0"
   },
   "devDependencies": {
     "eslint": "4.8.0",

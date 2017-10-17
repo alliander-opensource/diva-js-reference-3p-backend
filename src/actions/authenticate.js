@@ -1,15 +1,4 @@
 const diva = require('diva-irma-js');
-
-// TODO: get this from config
-const divaCookieName = 'diva-session';
-const cookieSettings = {
-  httpOnly: true,
-  maxAge: 300000,
-  sameSite: true,
-  signed: true,
-  secure: false, // TODO: NOTE: must be set to true and be used with HTTPS only!
-};
-
 /**
  * Request handler
  * @function requestHandler
@@ -36,7 +25,7 @@ module.exports = function requestHandler(req, res) {
       req.divaSessionState = diva.addProof(req.divaSessionState, proof);
     });
   }
-  res.cookie(divaCookieName, req.divaSessionState, cookieSettings);
+  diva.sendCookie(req, res);
 
   // Display session state
   return res.json(req.divaSessionState);
