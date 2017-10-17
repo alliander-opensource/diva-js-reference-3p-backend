@@ -18,7 +18,7 @@ app.use(bodyParser.text()); // TODO: restrict to one endpoint
 app.get('/api/authenticate', require('./actions/authenticate'));
 app.get('/api/get-session', require('./actions/get-session'));
 app.get('/api/deauthenticate', require('./actions/deauthenticate'));
-app.post('/api/add-proof/:sessionToken', require('./actions/add-proof'));
+app.post('/api/complete-disclosure-session/:sessionToken', require('./actions/complete-disclosure-session'));
 
 app.get('/api/attributes-required', require('./actions/attributes-required'));
 

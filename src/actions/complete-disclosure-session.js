@@ -16,7 +16,7 @@ module.exports = function requestHandler(req, res) {
 
   const proof = req.body;
   if (proof !== undefined) {
-    return diva.addProof(proof)
+    return diva.completeDisclosureSession(proof)
       .then(() => {
         res
           .status(200)
