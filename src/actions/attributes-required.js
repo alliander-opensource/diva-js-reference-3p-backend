@@ -11,7 +11,6 @@ const qr = require('qr-image');
 module.exports = function requestHandler(req, res) {
   const attribute = req.query.attribute;
   const attributesLabel = req.query.attributesLabel;
-  
   if (attribute && attributesLabel) {
     diva
       .startDisclosureSession(req.divaSessionState.user.sessionId, attribute, attributesLabel)
