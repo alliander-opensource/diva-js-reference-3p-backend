@@ -1,4 +1,4 @@
-const diva = require('diva-irma-js');
+const simpleSession = require('./../modules/simple-session');
 
 // TODO: get this from config
 const divaCookieName = 'diva-session';
@@ -18,7 +18,7 @@ const cookieSettings = {
  * @returns {undefined}
  */
 module.exports = function requestHandler(req, res) {
-  req.divaSessionState = diva.deauthenticate();
+  req.divaSessionState = simpleSession.deauthenticate();
   res.cookie(divaCookieName, req.divaSessionState, cookieSettings);
   res.json(req.divaSessionState);
 };
