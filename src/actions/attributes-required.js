@@ -13,18 +13,16 @@ module.exports = function requestHandler(req, res) {
   const attributesLabel = req.query.attributesLabel;
   if (attribute && attributesLabel) {
     diva
-      .startDisclosureSession(req.divaSessionState.session, attribute, attributesLabel)
+      .startDisclosureSession(req.divaSessionState.sessionId, attribute, attributesLabel)
       .then((qrContent) => {
         switch (req.query.type) {
+          case 'json':
           case 'qr':
+          default:
             res.setHeader('Content-type', 'image/png');
             res.setHeader('Content-Disposition', 'inline; filename="qr.png"'); // Note: to force display in browser
             qr.image(qrContent, { type: 'png' }).pipe(res);
             break;
-          case 'json':
-          default:
-            res.setHeader('Content-type', 'application/json; charset=utf-8');
-            res.send(qrContent);
         }
       })
       .catch((error) => {
