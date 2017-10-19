@@ -18,7 +18,7 @@ const cookieSettings = {
  * @returns {undefined}
  */
 module.exports = function requestHandler(req, res) {
-  req.divaSessionState = simpleSession.deauthenticate(req.divaSessionState.session);
+  req.divaSessionState = simpleSession.deauthenticate(req.divaSessionState.sessionId);
   res.cookie(divaCookieName, req.divaSessionState, cookieSettings);
   res.json(req.divaSessionState);
 };

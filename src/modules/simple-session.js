@@ -17,20 +17,26 @@ function deauthenticate(oldSession) {
     diva.removeDivaSession(oldSession);
   }
 
-  return { session: uuidv4() };
+  return {
+    sessionId: uuidv4(),
+    attributes: {},
+    proofs: [],
+  };
 }
 
 function simpleSessionCookieParser(req, res, next) {
   if (typeof req.signedCookies[cookieName] === 'undefined' ||
-      typeof req.signedCookies[cookieName].session === 'undefined') {
+      typeof req.signedCookies[cookieName].sessionId === 'undefined') {
     req.divaSessionState = deauthenticate();
     res.cookie(cookieName, req.divaSessionState, cookieSettings);
   } else {
-    const session = req.signedCookies[cookieName].session;
-    const attributes = diva.getAttributes(session);
+    const sessionId = req.signedCookies[cookieName].sessionId;
+    const attributes = diva.getAttributes(sessionId);
+    const proofs = diva.getProofs(sessionId);
     req.divaSessionState = {
-      session,
+      sessionId,
       attributes,
+      proofs,
     };
   }
   next();
