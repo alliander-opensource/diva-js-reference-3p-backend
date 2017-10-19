@@ -12,9 +12,12 @@ const cookieSettings = {
 };
 
 
-function deauthenticate() {
-  return { session: uuidv4(),
-  };
+function deauthenticate(oldSession) {
+  if (oldSession !== undefined) {
+    diva.removeDivaSession(oldSession);
+  }
+
+  return { session: uuidv4() };
 }
 
 function simpleSessionCookieParser(req, res, next) {
