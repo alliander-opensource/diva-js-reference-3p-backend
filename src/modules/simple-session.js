@@ -19,7 +19,7 @@ function deauthenticate(oldSession) {
 
   return {
     sessionId: uuidv4(),
-    attributes: {},
+    attributes: [],
     proofs: [],
   };
 }
