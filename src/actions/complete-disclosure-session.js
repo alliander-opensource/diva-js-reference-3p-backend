@@ -9,7 +9,6 @@ const diva = require('diva-irma-js');
  */
 module.exports = function requestHandler(req, res) {
   // All routes without session token are non-existent
-  // TODO: use/verify IRMA session token?
   if (!req.params.sessionToken) {
     return res.sendStatus(404);
   }

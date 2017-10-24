@@ -4,13 +4,11 @@ const cookieParser = require('cookie-parser');
 const cookieEncrypter = require('cookie-encrypter');
 const diva = require('diva-irma-js');
 const simpleSession = require('./modules/simple-session');
+const config = require('./config');
 
-// TODO: get these from config
-const port = 4000;
-const cookieSecret = 'StRoNGs3crE7';
 const app = express();
-app.use(cookieParser(cookieSecret));
-app.use(cookieEncrypter(cookieSecret));
+app.use(cookieParser(config.cookieSecret));
+app.use(cookieEncrypter(config.cookieSecret));
 
 app.use(simpleSession);
 
@@ -24,7 +22,7 @@ app.get('/api/start-disclosure-session', require('./actions/start-disclosure-ses
 
 app.use('/api/only-for-x', diva.requireAttribute('pbdf.pbdf.idin.gender'), require('./actions/only-for-x'));
 
-app.listen(port, () => {
-  console.log(`Diva Reference Third Party backend listening on port ${port} !`); // eslint-disable-line no-console
+app.listen(config.port, () => {
+  console.log(`Diva Reference Third Party backend listening on port ${config.port} !`); // eslint-disable-line no-console
   console.log(`Diva version ${diva.version()}`); // eslint-disable-line no-console
 });
