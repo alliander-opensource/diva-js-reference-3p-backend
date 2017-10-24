@@ -24,15 +24,13 @@ module.exports = function requestHandler(req, res) {
             message: 'Proof valid',
           });
       })
-      .catch((e) => {
-        console.log(e); // for debugging...
-        return res
-          .status(401)
-          .send({
-            success: false,
-            message: 'Invalid proof!',
-          });
-      });
+      .catch(() => res
+        .status(401)
+        .send({
+          success: false,
+          message: 'Invalid proof!',
+        }),
+      );
   }
 
   return res

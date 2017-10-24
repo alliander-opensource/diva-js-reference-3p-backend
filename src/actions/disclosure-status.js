@@ -10,20 +10,20 @@ const diva = require('diva-irma-js');
 module.exports = function requestHandler(req, res) {
   const irmaSessionId = req.query.irmaSessionId;
   if (!irmaSessionId) {
-    return res.json({ status: "INVALID" });
+    return res.json({ status: 'INVALID' });
   }
   return diva
     .getIrmaAPISessionStatus(irmaSessionId)
-    .then(disclosureStatus => {
-      if (disclosureStatus === "COMPLETED") {
+    .then((disclosureStatus) => {
+      if (disclosureStatus === 'COMPLETED') {
         const divaSessionId = req.sessionId;
         return diva.getProofStatus(divaSessionId, irmaSessionId)
-        .then(proofStatus =>
-          res.json({
-            disclosureStatus,
-            proofStatus,
-          })
-        );
+          .then(proofStatus =>
+            res.json({
+              disclosureStatus,
+              proofStatus,
+            }),
+          );
       }
       return res.json({ disclosureStatus });
     });

@@ -14,7 +14,7 @@ module.exports = function requestHandler(req, res) {
   if (attribute && attributesLabel) {
     diva
       .startDisclosureSession(req.sessionId, attribute, attributesLabel)
-      .then(irmaSessionData => {
+      .then((irmaSessionData) => {
         switch (req.query.type) {
           case 'qr':
             res.setHeader('Content-type', 'image/png');
