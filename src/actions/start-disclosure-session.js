@@ -13,7 +13,7 @@ module.exports = function requestHandler(req, res) {
   const attributesLabel = req.query.attributesLabel;
   if (attribute && attributesLabel) {
     diva
-      .startDisclosureSession(req.divaSessionState.sessionId, attribute, attributesLabel)
+      .startDisclosureSession(req.sessionId, attribute, attributesLabel)
       .then((qrContent) => {
         switch (req.query.type) {
           case 'qr':

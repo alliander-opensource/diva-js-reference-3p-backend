@@ -1,5 +1,4 @@
 const uuidv4 = require('uuid/v4');
-const diva = require('diva-irma-js');
 
 // TODO: get these from config
 const cookieName = 'diva-session';
@@ -12,32 +11,17 @@ const cookieSettings = {
 };
 
 
-function deauthenticate(oldSession) {
-  if (oldSession !== undefined) {
-    diva.removeDivaSession(oldSession);
-  }
-
-  return {
-    sessionId: uuidv4(),
-    attributes: [],
-    proofs: [],
-  };
+function deauthenticate(req, res) {
+  console.log('deauth');
+  req.sessionId = uuidv4();
+  res.cookie(cookieName, req.sessionId, cookieSettings);
 }
 
 function simpleSessionCookieParser(req, res, next) {
-  if (typeof req.signedCookies[cookieName] === 'undefined' ||
-      typeof req.signedCookies[cookieName].sessionId === 'undefined') {
-    req.divaSessionState = deauthenticate();
-    res.cookie(cookieName, req.divaSessionState, cookieSettings);
+  if (!req.signedCookies[cookieName]) {
+    deauthenticate(req, res);
   } else {
-    const sessionId = req.signedCookies[cookieName].sessionId;
-    const attributes = diva.getAttributes(sessionId);
-    const proofs = diva.getProofs(sessionId);
-    req.divaSessionState = {
-      sessionId,
-      attributes,
-      proofs,
-    };
+    req.sessionId = req.signedCookies[cookieName];
   }
   next();
 }
