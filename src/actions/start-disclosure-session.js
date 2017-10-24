@@ -14,17 +14,17 @@ module.exports = function requestHandler(req, res) {
   if (attribute && attributesLabel) {
     diva
       .startDisclosureSession(req.sessionId, attribute, attributesLabel)
-      .then((qrContent) => {
+      .then(irmaSessionData => {
         switch (req.query.type) {
           case 'qr':
             res.setHeader('Content-type', 'image/png');
             res.setHeader('Content-Disposition', 'inline; filename="qr.png"'); // Note: to force display in browser
-            qr.image(qrContent, { type: 'png' }).pipe(res);
+            qr.image(irmaSessionData.qrContent, { type: 'png' }).pipe(res);
             break;
           case 'json':
           default:
             res.setHeader('Content-type', 'application/json; charset=utf-8');
-            res.send(qrContent);
+            res.json(irmaSessionData);
         }
       })
       .catch((error) => {

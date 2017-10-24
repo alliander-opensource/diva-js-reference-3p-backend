@@ -31,9 +31,10 @@ app.use(bodyParser.text()); // TODO: restrict to one endpoint
 
 app.get('/api/get-session', require('./actions/get-session'));
 app.get('/api/deauthenticate', require('./actions/deauthenticate'));
-app.post('/api/complete-disclosure-session/:sessionToken', require('./actions/complete-disclosure-session'));
 
 app.get('/api/start-disclosure-session', require('./actions/start-disclosure-session'));
+app.get('/api/disclosure-status', require('./actions/disclosure-status'));
+app.post('/api/complete-disclosure-session/:sessionToken', require('./actions/complete-disclosure-session'));
 
 app.use('/api/only-for-x', diva.requireAttribute('pbdf.pbdf.idin.gender'), require('./actions/only-for-x'));
 

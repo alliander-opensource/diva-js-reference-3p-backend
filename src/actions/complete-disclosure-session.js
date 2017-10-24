@@ -15,7 +15,7 @@ module.exports = function requestHandler(req, res) {
 
   const proof = req.body;
   if (proof !== undefined) {
-    return diva.completeDisclosureSession(proof)
+    return diva.completeDisclosureSession(req.params.sessionToken, proof)
       .then(() => {
         res
           .status(200)
