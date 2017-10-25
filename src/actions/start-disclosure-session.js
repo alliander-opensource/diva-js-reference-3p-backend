@@ -10,7 +10,7 @@ const qr = require('qr-image');
  */
 module.exports = function requestHandler(req, res) {
   const attribute = req.query.attribute;
-  const attributes = Array(attribute);
+  const attributes = (typeof (attribute) === 'string') ? [attribute] : attribute;
   const attributesLabel = req.query.attributesLabel;
   if (attribute && attributesLabel) {
     diva
