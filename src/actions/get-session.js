@@ -9,10 +9,9 @@ const diva = require('diva-irma-js');
  */
 module.exports = function requestHandler(req, res) {
   const sessionId = req.sessionId;
-  const attributes = diva.getAttributes(sessionId);
-  // Display session state
-  return res.json({
-    sessionId,
-    attributes,
-  });
+  diva.getAttributes(sessionId)
+    .then(attributes => res.json({
+      sessionId,
+      attributes,
+    }));
 };
