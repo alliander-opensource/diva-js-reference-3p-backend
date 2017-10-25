@@ -36,7 +36,7 @@ app.get('/api/start-disclosure-session', require('./actions/start-disclosure-ses
 app.get('/api/disclosure-status', require('./actions/disclosure-status'));
 app.post('/api/complete-disclosure-session/:sessionToken', require('./actions/complete-disclosure-session'));
 
-app.use('/api/only-for-x', diva.requireAttribute('pbdf.pbdf.idin.gender'), require('./actions/only-for-x'));
+app.use('/api/only-for-x', diva.requireAttributes(['pbdf.pbdf.idin.address']), require('./actions/only-for-x'));
 
 app.listen(config.port, () => {
   console.log(`Diva Reference Third Party backend listening on port ${config.port} !`); // eslint-disable-line no-console
