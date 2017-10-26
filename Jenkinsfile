@@ -16,6 +16,7 @@ def buildParameterMap = [:]
 buildParameterMap['appName'] = 'diva-js-reference-3p'
 buildParameterMap['buildClosure'] = buildClosure
 buildParameterMap['namespaces'] = ['nebm-dev']
+buildParameterMap['namespacesWithApproval'] = []
 
 buildAndDeployGeneric(buildParameterMap)
 

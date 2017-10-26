@@ -16,6 +16,20 @@ spec:
     spec:
       containers:
       - name: {appName}
+        envFrom:
+        - configMapRef:
+            name: {appName}
+        env:
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: diva-redis-redis
+              key: redis-password
+        - name: API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {appName}
+              key: API_KEY
         image: {image}
         resources:
           limits:
