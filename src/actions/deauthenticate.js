@@ -9,7 +9,7 @@ const diva = require('diva-irma-js');
  * @returns {undefined}
  */
 module.exports = function requestHandler(req, res) {
-  diva.removeSession(req.sessionId);
+  diva.removeDivaSession(req.sessionId);
 
   simpleSession.deauthenticate(req, res);
   return res.json({

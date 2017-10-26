@@ -19,6 +19,7 @@ NP5xwUdLGOuGo41T7Q+wkR5KqXDif+FKoR7qlG7jEUHcbd1OQe7b6DxzSHCI65Bw
 TIZwMj2LtEwB6Op7vemHkeNaPAYK33t5kdyq+P55KMDuJgj+nxpFO00U4msD+CRa
 7QIDAQAB
 -----END PUBLIC KEY-----`,
+  useRedis: false,
 });
 
 const app = express();
