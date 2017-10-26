@@ -11,6 +11,7 @@ diva.init({
   apiKey: config.apiKey,
   irmaApiServerUrl: config.irmaApiServerUrl,
   irmaApiServerPublicKey: config.irmaApiServerPublicKey,
+  completeDisclosureSessionEndpoint: config.completeDisclosureSessionEndpoint,
   useRedis: config.useRedis,
   redisOptions: {
     host: config.redisHost,
@@ -22,17 +23,18 @@ diva.init({
 const app = express();
 app.use(cookieParser(config.cookieSecret));
 app.use(cookieEncrypter(config.cookieSecret));
-
+app.use(bodyParser.text()); // TODO: restrict to one endpoint
 app.use(simpleSession);
 
-app.use(bodyParser.text()); // TODO: restrict to one endpoint
 
+// Reference implementation session management endpoints
 app.get('/api/get-session', require('./actions/get-session'));
 app.get('/api/deauthenticate', require('./actions/deauthenticate'));
 
+// DIVA disclore endpoints
 app.get('/api/start-disclosure-session', require('./actions/start-disclosure-session'));
 app.get('/api/disclosure-status', require('./actions/disclosure-status'));
-app.post('/api/complete-disclosure-session/:sessionToken', require('./actions/complete-disclosure-session'));
+app.post(`${config.completeDisclosureSessionEndpoint}/:irmaSessionId`, require('./actions/complete-disclosure-session'));
 
 app.use('/api/only-for-x', diva.requireAttributes(['pbdf.pbdf.idin.address']), require('./actions/only-for-x'));
 

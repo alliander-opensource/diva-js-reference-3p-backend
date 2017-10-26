@@ -21,6 +21,7 @@ NP5xwUdLGOuGo41T7Q+wkR5KqXDif+FKoR7qlG7jEUHcbd1OQe7b6DxzSHCI65Bw
 TIZwMj2LtEwB6Op7vemHkeNaPAYK33t5kdyq+P55KMDuJgj+nxpFO00U4msD+CRa
 7QIDAQAB
 -----END PUBLIC KEY-----`,
+  completeDisclosureSessionEndpoint: '/api/complete-disclosure-session',
   useRedis: process.env.USE_REDIS ? process.env.USE_REDIS : false,
   redisHost: process.env.REDIS_HOST ? process.env.REDIS_HOST : 'http://localhost',
   redisPort: process.env.REDIS_PORT ? process.env.REDIS_PORT : '6379',
