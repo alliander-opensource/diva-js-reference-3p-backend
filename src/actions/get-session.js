@@ -9,7 +9,8 @@ const diva = require('diva-irma-js');
  */
 module.exports = function requestHandler(req, res) {
   const sessionId = req.sessionId;
-  diva.getAttributes(sessionId)
+  diva
+    .getAttributes(sessionId)
     .then(attributes => res.json({
       sessionId,
       attributes,

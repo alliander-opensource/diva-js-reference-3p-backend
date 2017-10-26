@@ -8,35 +8,20 @@ const diva = require('diva-irma-js');
  * @returns {undefined}
  */
 module.exports = function requestHandler(req, res) {
-  // All routes without session token are non-existent
-  if (!req.params.sessionToken) {
+  // Note: The IRMA API server concatenates the irma session id (session token
+  // in the IRMA documentation to this route. That is why a route param is used.
+  // All routes without session id are non-existent.
+  if (!req.params.irmaSessionId) {
     return res.sendStatus(404);
   }
 
   const proof = req.body;
   if (proof !== undefined) {
-    return diva.completeDisclosureSession(req.params.sessionToken, proof)
-      .then(() => {
-        res
-          .status(200)
-          .send({
-            success: true,
-            message: 'Proof valid',
-          });
-      })
-      .catch(() => res
-        .status(401)
-        .send({
-          success: false,
-          message: 'Invalid proof!',
-        }),
-      );
+    return diva
+      .completeDisclosureSession(req.params.irmaSessionId, proof)
+      .then(() => res.sendStatus(200)) // Proof was successfully processed
+      .catch(() => res.sendStatus(401)); // Error during proof processing
   }
 
-  return res
-    .status(400)
-    .send({
-      success: false,
-      message: 'No proof provided!',
-    });
+  return res.sendStatus(400); //No proof provided
 };
