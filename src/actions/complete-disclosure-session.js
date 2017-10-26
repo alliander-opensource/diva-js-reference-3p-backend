@@ -23,5 +23,5 @@ module.exports = function requestHandler(req, res) {
       .catch(() => res.sendStatus(401)); // Error during proof processing
   }
 
-  return res.sendStatus(400); //No proof provided
+  return res.sendStatus(400); // No proof provided
 };

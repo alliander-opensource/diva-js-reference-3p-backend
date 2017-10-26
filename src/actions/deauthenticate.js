@@ -12,7 +12,7 @@ module.exports = function requestHandler(req, res) {
   diva.removeDivaSession(req.sessionId); // Clear attributes
 
   simpleSession.deauthenticate(req, res); // Create a new sessionId
-  
+
   return res.json({
     sessionId: req.sessionId,
   });
