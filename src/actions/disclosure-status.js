@@ -14,5 +14,5 @@ module.exports = function requestHandler(req, res) {
   }
   return diva
     .getIrmaAPISessionStatus(req.sessionId, irmaSessionId)
-    .then((status) => res.json(status));
+    .then(status => res.json(status));
 };
