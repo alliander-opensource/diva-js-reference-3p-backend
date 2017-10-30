@@ -13,18 +13,6 @@ module.exports = function requestHandler(req, res) {
     return res.json({ status: 'INVALID' });
   }
   return diva
-    .getIrmaAPISessionStatus(irmaSessionId)
-    .then((disclosureStatus) => {
-      if (disclosureStatus === 'COMPLETED') {
-        const divaSessionId = req.sessionId;
-        return diva.getProofStatus(divaSessionId, irmaSessionId)
-          .then(proofStatus =>
-            res.json({
-              disclosureStatus,
-              proofStatus,
-            }),
-          );
-      }
-      return res.json({ disclosureStatus });
-    });
+    .getIrmaAPISessionStatus(req.sessionId, irmaSessionId)
+    .then((status) => res.json(status));
 };
