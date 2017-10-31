@@ -23,9 +23,10 @@ TIZwMj2LtEwB6Op7vemHkeNaPAYK33t5kdyq+P55KMDuJgj+nxpFO00U4msD+CRa
 -----END PUBLIC KEY-----`,
   completeDisclosureSessionEndpoint: '/api/complete-disclosure-session',
   useRedis: process.env.USE_REDIS ? process.env.USE_REDIS : false,
-  redisHost: process.env.REDIS_HOST ? process.env.REDIS_HOST : 'http://localhost',
+  redisHost: process.env.REDIS_HOST ? process.env.REDIS_HOST : 'localhost',
   redisPort: process.env.REDIS_PORT ? process.env.REDIS_PORT : '6379',
   redisPassword: process.env.REDIS_PASSWORD ? process.env.REDIS_PASSWORD : '',
+  bingMapsApiKey: '',
 };
 
 module.exports = config;

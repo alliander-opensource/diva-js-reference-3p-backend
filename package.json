@@ -30,6 +30,7 @@
     "diva-irma-js": "git+https://github.com/Alliander/diva-irma-js.git",
     "express": "4.16.1",
     "qr-image": "3.2.0",
+    "superagent": "3.8.0",
     "uuid": "3.1.0"
   },
   "devDependencies": {
