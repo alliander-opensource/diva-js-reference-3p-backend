@@ -38,7 +38,7 @@ app.post('/api/start-disclosure-session', require('./actions/start-disclosure-se
 app.get('/api/disclosure-status', require('./actions/disclosure-status'));
 app.post(`${config.completeDisclosureSessionEndpoint}/:irmaSessionId`, require('./actions/complete-disclosure-session'));
 
-app.use('/api/only-for-x', diva.requireAttributes(['pbdf.pbdf.idin.address']), require('./actions/only-for-x'));
+app.use('/api/images/address.jpg', diva.requireAttributes(['pbdf.pbdf.idin.address', 'pbdf.pbdf.idin.city']), require('./actions/get-address-map'));
 
 app.listen(config.port, () => {
   console.log(`Diva Reference Third Party backend listening on port ${config.port} !`); // eslint-disable-line no-console
