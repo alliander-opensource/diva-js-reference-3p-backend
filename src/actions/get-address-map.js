@@ -12,11 +12,10 @@ const request = require('superagent');
 module.exports = function requestHandler(req, res) {
   const sessionId = req.sessionId;
   diva.getAttributes(sessionId)
-    .then(attributes => {
-      const street = attributes['pbdf.pbdf.idin.address'][0].replace(' ','%20');
+    .then((attributes) => {
+      const street = attributes['pbdf.pbdf.idin.address'][0].replace(' ', '%20');
       const city = attributes['pbdf.pbdf.idin.city'][0];
       const url = `https://dev.virtualearth.net/REST/v1/Imagery/Map/CanvasLight/Netherlands%20${city}%20${street}/1`;
-      console.log('url: ', url);
       request
         .get(url)
         .query({
@@ -25,13 +24,12 @@ module.exports = function requestHandler(req, res) {
         })
         .end((err, imageResponse) => {
           if (err) {
-            console.log('error: ', err);
             return res.sendStatus(500);
           }
 
           res.setHeader('Content-type', 'image/jpeg');
           res.setHeader('Content-Disposition', 'inline; filename="address.jpg"'); // Note: to force display in browser
-          res.end(imageResponse.body);
+          return res.end(imageResponse.body);
         });
     });
 };

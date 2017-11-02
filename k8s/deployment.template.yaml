@@ -25,11 +25,21 @@ spec:
             secretKeyRef:
               name: diva-redis-redis
               key: redis-password
-        - name: API_KEY
+        - name: BING_MAPS_API_KEY
           valueFrom:
             secretKeyRef:
               name: {appName}
-              key: API_KEY
+              key: BING_MAPS_API_KEY
+        - name: IRMA_API_SERVER_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {appName}
+              key: IRMA_API_SERVER_KEY
+        - name: IRMA_API_SERVER_PUBLIC_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {appName}
+              key: IRMA_API_SERVER_PUBLIC_KEY
         image: {image}
         resources:
           limits:
