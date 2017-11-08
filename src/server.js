@@ -40,7 +40,9 @@ app.post(`${config.completeDisclosureSessionEndpoint}/:irmaSessionId`, require('
 
 app.use('/api/images/address.jpg', diva.requireAttributes(['pbdf.pbdf.idin.address', 'pbdf.pbdf.idin.city']), require('./actions/get-address-map'));
 
-app.listen(config.port, () => {
+const server = app.listen(config.port, () => {
   console.log(`Diva Reference Third Party backend listening on port ${config.port} !`); // eslint-disable-line no-console
   console.log(`Diva version ${diva.version()}`); // eslint-disable-line no-console
 });
+
+module.exports = { app, server };
