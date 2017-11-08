@@ -11,7 +11,6 @@ diva.init({
   apiKey: config.apiKey,
   irmaApiServerUrl: config.irmaApiServerUrl,
   irmaApiServerPublicKey: config.irmaApiServerPublicKey,
-  completeDisclosureSessionEndpoint: config.completeDisclosureSessionEndpoint,
   useRedis: config.useRedis,
   redisOptions: {
     host: config.redisHost,
@@ -36,7 +35,6 @@ app.get('/api/deauthenticate', require('./actions/deauthenticate'));
 app.get('/api/start-disclosure-session', require('./actions/start-simple-disclosure-session'));
 app.post('/api/start-disclosure-session', require('./actions/start-disclosure-session'));
 app.get('/api/disclosure-status', require('./actions/disclosure-status'));
-app.post(`${config.completeDisclosureSessionEndpoint}/:irmaSessionId`, require('./actions/complete-disclosure-session'));
 
 app.use('/api/images/address.jpg', diva.requireAttributes(['pbdf.pbdf.idin.address', 'pbdf.pbdf.idin.city']), require('./actions/get-address-map'));
 

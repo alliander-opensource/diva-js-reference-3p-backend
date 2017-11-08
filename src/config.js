@@ -13,7 +13,6 @@ const config = {
   apiKey: process.env.IRMA_API_SERVER_KEY ? process.env.IRMA_API_SERVER_KEY : 'FILL_IN',
   irmaApiServerUrl: process.env.IRMA_API_SERVER_URL ? process.env.IRMA_API_SERVER_URL : 'http://localhost:8081/irma_api_server',
   irmaApiServerPublicKey: process.env.IRMA_API_SERVER_PUBLIC_KEY ? process.env.IRMA_API_SERVER_PUBLIC_KEY : 'FILL_IN',
-  completeDisclosureSessionEndpoint: process.env.COMPLETE_DISCLOSURE_SESSION_ENDPOINT ? process.env.COMPLETE_DISCLOSURE_SESSION_ENDPOINT : '/api/complete-disclosure-session',
   useRedis: process.env.USE_REDIS ? process.env.USE_REDIS : false,
   redisHost: process.env.REDIS_HOST ? process.env.REDIS_HOST : 'localhost',
   redisPort: process.env.REDIS_PORT ? process.env.REDIS_PORT : '6379',
