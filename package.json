@@ -8,7 +8,9 @@
     "dev": "nodemon -e js,html src/server.js",
     "prod": "node src/server.js",
     "lint": "./node_modules/.bin/eslint -c .eslintrc src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha 'src/**/*.e2e.js'",
+    "test:watch": "mocha --watch 'src/**/*.e2e.js'",
+    "test:unit": "mocha 'src/**/*.spec.js'"
   },
   "private": true,
   "keywords": [
@@ -34,10 +36,17 @@
     "uuid": "3.1.0"
   },
   "devDependencies": {
+    "chai": "4.1.2",
+    "chai-as-promised": "7.1.1",
     "eslint": "4.8.0",
     "eslint-config-airbnb": "15.1.0",
     "eslint-plugin-import": "2.7.0",
+    "eslint-plugin-jasmine": "2.9.1",
     "eslint-plugin-jsx-a11y": "5.1.1",
-    "eslint-plugin-react": "7.4.0"
+    "eslint-plugin-mocha": "4.11.0",
+    "eslint-plugin-react": "7.4.0",
+    "mocha": "4.0.1",
+    "supertest": "3.0.0",
+    "supertest-as-promised": "4.0.2"
   }
 }
