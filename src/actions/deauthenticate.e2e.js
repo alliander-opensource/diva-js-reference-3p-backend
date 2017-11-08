@@ -14,12 +14,12 @@ describe('Deauthenticate', () => {
       .expect(200)
       .expect((res) => {
         sessionId = res.body.sessionId;
-        cookie = res.headers['set-cookie']
-      })
+        cookie = res.headers['set-cookie'];
+      }),
   );
 
   after(() =>
-    server.close()
+    server.close(),
   );
 
   it('returns a new session id and a new cookie', () =>
@@ -32,8 +32,8 @@ describe('Deauthenticate', () => {
         expect(res.body).to.have.property('sessionId');
         expect(res.body.sessionId).to.not.equal(sessionId);
         newSessionId = res.body.sessionId;
-        cookie = res.headers['set-cookie']
-      })
+        cookie = res.headers['set-cookie'];
+      }),
   );
 
   it('causes get-session to return the new session id', () =>
@@ -45,6 +45,6 @@ describe('Deauthenticate', () => {
         expect(res.body).to.have.property('sessionId');
         expect(res.body).to.have.property('attributes');
         expect(res.body.sessionId).to.equal(newSessionId);
-      })
+      }),
   );
 });

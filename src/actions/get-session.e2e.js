@@ -7,7 +7,7 @@ describe('Get session', () => {
   let sessionId;
 
   after(() =>
-    server.close()
+    server.close(),
   );
 
   it('return session info and a session cookie', () =>
@@ -19,8 +19,8 @@ describe('Get session', () => {
         expect(res.body).to.have.property('sessionId');
         expect(res.body).to.have.property('attributes');
         sessionId = res.body.sessionId;
-        cookie = res.headers['set-cookie']
-      })
+        cookie = res.headers['set-cookie'];
+      }),
   );
 
   it('returns the same sessionId when passing a session cookie', () =>
@@ -32,6 +32,6 @@ describe('Get session', () => {
         expect(res.body).to.have.property('sessionId');
         expect(res.body).to.have.property('attributes');
         expect(res.body.sessionId).to.equal(sessionId);
-      })
+      }),
   );
 });
