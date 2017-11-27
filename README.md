@@ -1,6 +1,6 @@
 # diva-js-reference-3p-backend
 
-This repository contains an example/reference backend implementation that uses the DIVA SDK [diva-irma-js](https://github.com/Alliander/diva-irma-js) to easily integrate [IRMA attributes](https://privacybydesign.foundation/irma-controleur/) into NodeJS based applications.
+This repository contains an example/reference backend implementation that uses the DIVA SDK [diva-irma-js](https://github.com/Alliander/diva-irma-js) to easily integrate [IRMA attributes](https://privacybydesign.foundation/irma-verifier/) into NodeJS based applications.
 
 For a compatible frontend example see [diva-js-reference-3p-frontend](https://github.com/Alliander/diva-js-reference-3p-frontend).
 
@@ -36,7 +36,28 @@ Note: for simple use cases there is also the `diva.requireAttribute()` middlewar
 - `npm install`
 - `npm start`
 
-Note: for development, user `npm run dev` to run the application in development mode with hot reloading.
+Note: for development, use `npm run dev` to run the application in development mode with hot reloading.
+
+Note: To use the map api functionality, the `BING_MAPS_API_KEY` environment variable must be set to a valid Bing maps API key.
+
+## Dependencies
+
+### IRMA API server
+
+This DIVA reference implementation requires and instance of the [IRMA API server](https://github.com/credentials/irma_api_server) to be started as a separate application alongside it. Configure the communication between the IRMA API server and the DIVA reference implementation by setting the following environment variables:
+
+- `IRMA_API_SERVER_URL`: the url where the api server is reachable
+- `IRMA_API_SERVER_PUBLIC_KEY`: the public key of the IRMA API server (as configured in the IRMA API server)
+- `IRMA_API_SERVER_KEY`: the private key of the DIVA reference implementation (the corresponding public key should be added to the IRMA API server configuration)
+
+### REDIS_HOST
+
+By default the DIVA reference implementation runs with `in memory` session management. In order to make the DIVA reference implementation stateless, a [Redis](https://redis.io/) instance can be used for state management. To configure communication with Redis, set the following environment variables:
+
+- `USE_REDIS`: "true"
+- `REDIS_HOST`: the url where the redis instance can be reached
+- `REDIS_PORT`: the port where the redis instance can be reached
+- `REDIS_PASSWORD`: the password as configured in redis
 
 ## Tests
 
@@ -45,6 +66,11 @@ There are currently no tests for the backend.
 ## IRMA
 
 For more information about IRMA, see: https://privacybydesign.foundation/irma/
+
+The IRMA client apps can be downloaded from their respective app stores:
+
+- [Apple App Store](https://itunes.apple.com/nl/app/irma-authentication/id1294092994?mt=8)
+- [Google Play Store](https://play.google.com/store/apps/details?id=org.irmacard.cardemu)
 
 Other components in the IRMA ecosystem include:
 
