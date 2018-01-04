@@ -42,6 +42,19 @@ Note: To use the map api functionality, the `BING_MAPS_API_KEY` environment vari
 
 ## Dependencies
 
+#### T.L.D.R minimal required env var exports:
+
+```
+export IRMA_API_SERVER_URL='https://url-to-irma-api-server'
+export IRMA_API_SERVER_PUBLIC_KEY="-----BEGIN PUBLIC KEY-----
+(...)
+-----END PUBLIC KEY-----"
+export IRMA_API_SERVER_KEY="-----BEGIN RSA PRIVATE KEY-----
+(...)
+-----END RSA PRIVATE KEY-----"
+export BING_MAPS_API_KEY='key'
+```
+
 ### IRMA API server
 
 This DIVA reference implementation requires and instance of the [IRMA API server](https://github.com/credentials/irma_api_server) to be started as a separate application alongside it. Configure the communication between the IRMA API server and the DIVA reference implementation by setting the following environment variables:
@@ -50,7 +63,9 @@ This DIVA reference implementation requires and instance of the [IRMA API server
 - `IRMA_API_SERVER_PUBLIC_KEY`: the public key of the IRMA API server (as configured in the IRMA API server)
 - `IRMA_API_SERVER_KEY`: the private key of the DIVA reference implementation (the corresponding public key should be added to the IRMA API server configuration)
 
-### REDIS_HOST
+To run your own local IRMA API SERVER, see it's [README](https://github.com/privacybydesign/irma_api_server/blob/master/README.md)
+
+### Redis
 
 By default the DIVA reference implementation runs with `in memory` session management. In order to make the DIVA reference implementation stateless, a [Redis](https://redis.io/) instance can be used for state management. To configure communication with Redis, set the following environment variables:
 
@@ -58,6 +73,10 @@ By default the DIVA reference implementation runs with `in memory` session manag
 - `REDIS_HOST`: the url where the redis instance can be reached
 - `REDIS_PORT`: the port where the redis instance can be reached
 - `REDIS_PASSWORD`: the password as configured in redis
+
+### Bing maps API key
+
+The MyHome example in the [diva-js-reference-3p-frontend](https://github.com/Alliander/diva-js-reference-3p-frontend) frontend displays a map image that uses the Bing maps API through this backend. To make it work, provide your own private bing maps api key as an export, or set a placeholder (of course then the Bing API won't work correctly).
 
 ## Tests
 
