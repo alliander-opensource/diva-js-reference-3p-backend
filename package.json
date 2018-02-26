@@ -27,10 +27,14 @@
   ],
   "license": "BSD-3-Clause",
   "dependencies": {
+    "basic-auth": "2.0.0",
     "cookie-encrypter": "0.2.3",
     "cookie-parser": "1.4.3",
     "diva-irma-js": "git+https://github.com/Alliander/diva-irma-js.git#4653f46174371b856608cbeaae347dede42054c5",
     "express": "4.16.1",
+    "knex": "0.14.4",
+    "objection": "1.0.0",
+    "pg": "7.4.1",
     "qr-image": "3.2.0",
     "superagent": "3.8.0",
     "uuid": "3.1.0"
