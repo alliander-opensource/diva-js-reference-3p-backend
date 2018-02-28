@@ -20,13 +20,33 @@ module.exports = function requestHandler(req, res) {
       };
     })
     .then(address => {
-      return Policy.query().where('owner', '=', address);
+      if (!req.params.id) {
+        throw new Error("No policyId specified.");
+      }
+      return Policy
+        .query()
+        .delete()
+        .where('owner', '=', address)
+        .andWhere('id', '=', req.params.id);
     })
-    .then(policies => {
-      res.json(policies);
+    .then((numDeleted) => {
+      return res
+        .status(200)
+        .send({
+          success: true,
+          message: 'Deleted',
+          numDeleted,
+          id: req.params.id,
+        });
     })
     .catch((err) => {
-      return res.end('Something went wrong.');
+      console.log(err);
+      return res
+        .status(400)
+        .send({
+          success: false,
+          message: 'Something went wrong',
+        });
     });
 
 };
