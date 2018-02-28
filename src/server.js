@@ -38,6 +38,10 @@ app.get('/api/disclosure-status', require('./actions/disclosure-status'));
 
 app.use('/api/images/address.jpg', diva.requireAttributes(['pbdf.pbdf.idin.address', 'pbdf.pbdf.idin.city']), require('./actions/get-address-map'));
 
+// DIVA signature endpoints
+app.post('/api/start-signature-session', require('./actions/start-signature-session'));
+app.get('/api/signature-status', require('./actions/signature-status'));
+
 const server = app.listen(config.port, () => {
   console.log(`Diva Reference Third Party backend listening on port ${config.port} !`); // eslint-disable-line no-console
   console.log(`Diva version ${diva.version()}`); // eslint-disable-line no-console
