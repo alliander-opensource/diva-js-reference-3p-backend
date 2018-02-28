@@ -6,9 +6,9 @@ const diva = require('diva-irma-js');
 const simpleSession = require('./modules/simple-session');
 const config = require('./config');
 
-//Required for polict saving
-const initializeDatabase = require('./database/initialize-database')
-initializeDatabase();
+const initializeDatabase = require('./database/initialize-database');
+
+initializeDatabase(); // Required for policy saving
 
 diva.init({
   baseUrl: config.baseUrl,
@@ -46,8 +46,8 @@ app.use('/api/images/address.jpg', diva.requireAttributes(['pbdf.pbdf.idin.addre
 app.post('/api/start-signature-session', require('./actions/start-signature-session'));
 app.get('/api/signature-status', require('./actions/signature-status'));
 
-// Policy enpoints
-app.post('/api/policy/new',  diva.requireAttributes(['pbdf.pbdf.idin.address', 'pbdf.pbdf.idin.city']), require('./modules/policy/add-policy'));
+// Policy endpoints
+app.post('/api/policy/new', diva.requireAttributes(['pbdf.pbdf.idin.address', 'pbdf.pbdf.idin.city']), require('./modules/policy/add-policy'));
 app.get('/api/policy/all', diva.requireAttributes(['pbdf.pbdf.idin.address', 'pbdf.pbdf.idin.city']), require('./modules/policy/get-all-policies'));
 app.delete('/api/policy/:id', diva.requireAttributes(['pbdf.pbdf.idin.address', 'pbdf.pbdf.idin.city']), require('./modules/policy/delete-policy'));
 app.get('/api/policy/by-sp', require('./modules/policy/get-all-policies-by-sp'));

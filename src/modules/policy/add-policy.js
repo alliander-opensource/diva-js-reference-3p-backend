@@ -13,13 +13,11 @@ module.exports = function requestHandler(req, res) {
   const sessionId = req.sessionId;
   diva
     .getAttributes(sessionId)
-    .then((attributes) => {
-      return {
-        street: attributes['pbdf.pbdf.idin.address'][0],
-        city: attributes['pbdf.pbdf.idin.city'][0],
-      };
-    })
-    .then(address => {
+    .then(attributes => ({
+      street: attributes['pbdf.pbdf.idin.address'][0],
+      city: attributes['pbdf.pbdf.idin.city'][0],
+    }))
+    .then((address) => {
       const { transaction_hash, service_provider, policy, message, irma_signature } = req.body;
       return Policy.query().insert({
         id: transaction_hash,
@@ -58,5 +56,4 @@ module.exports = function requestHandler(req, res) {
       console.log(err);
       return res.end('Something went wrong.');
     });
-
 };
