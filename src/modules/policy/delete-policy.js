@@ -13,15 +13,13 @@ module.exports = function requestHandler(req, res) {
   const sessionId = req.sessionId;
   diva
     .getAttributes(sessionId)
-    .then((attributes) => {
-      return {
-        street: attributes['pbdf.pbdf.idin.address'][0],
-        city: attributes['pbdf.pbdf.idin.city'][0],
-      };
-    })
-    .then(address => {
+    .then(attributes => ({
+      street: attributes['pbdf.pbdf.idin.address'][0],
+      city: attributes['pbdf.pbdf.idin.city'][0],
+    }))
+    .then((address) => {
       if (!req.params.id) {
-        throw new Error("No policyId specified.");
+        throw new Error('No policyId specified.');
       }
       return Policy
         .query()
@@ -29,16 +27,16 @@ module.exports = function requestHandler(req, res) {
         .where('owner', '=', address)
         .andWhere('id', '=', req.params.id);
     })
-    .then((numDeleted) => {
-      return res
+    .then(numDeleted =>
+      res
         .status(200)
         .send({
           success: true,
           message: 'Deleted',
           numDeleted,
           id: req.params.id,
-        });
-    })
+        }),
+    )
     .catch((err) => {
       console.log(err);
       return res
@@ -48,5 +46,4 @@ module.exports = function requestHandler(req, res) {
           message: 'Something went wrong',
         });
     });
-
 };
