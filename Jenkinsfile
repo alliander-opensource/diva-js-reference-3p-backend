@@ -13,7 +13,7 @@ def buildClosure = {
 }
 
 def buildParameterMap = [:]
-buildParameterMap['appName'] = 'diva-js-reference-3p'
+buildParameterMap['appName'] = 'diva-fieldlab'
 buildParameterMap['buildClosure'] = buildClosure
 buildParameterMap['deploymentStrategy'] = [
     "*": ["promote:nebm-int"],
