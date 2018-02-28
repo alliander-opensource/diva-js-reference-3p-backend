@@ -14,9 +14,6 @@ module.exports = function requestHandler(req, res) {
   diva
     .getAttributes(sessionId)
     .then((attributes) => {
-      //TODO remove this as diva middleware makes sure this is not undefined
-      attributes['pbdf.pbdf.idin.address'] = ["Straat 1"]
-      attributes['pbdf.pbdf.idin.city'] = ["Stad"]
       return {
         street: attributes['pbdf.pbdf.idin.address'][0],
         city: attributes['pbdf.pbdf.idin.city'][0],
@@ -32,7 +29,7 @@ module.exports = function requestHandler(req, res) {
         irma_signature,
         owner: address,
       });
-      // return Policy.query().insert({
+      // Example: {
       //   id: "62uhkjasgdk",
       //   policy: {
       //     actor: "Huishoudboekje",
@@ -45,7 +42,7 @@ module.exports = function requestHandler(req, res) {
       //   message: "Huishoudboekje mag mijn inkomensgegevens lezen om mijn financiën te regelen.",
       //   irma_signature: {},
       //   owner: address,
-      // });
+      // }
     })
     .then((policy) => {
       res
