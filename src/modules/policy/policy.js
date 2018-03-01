@@ -9,9 +9,7 @@ const actorNames = {
  * @returns {string} the resulting message string
  */
 module.exports.toMessage = function toMessage(policy) {
-  console.log(policy);
-  const actorName = actorNames[policy.actorId]
-  console.log(actorName);
+  const actorName = actorNames[policy.actorId];
   const message = `${actorName} mag ${policy.actee} ${policy.action}, met als doel ${policy.goal}`;
   if (policy.conditions.length === 0) {
     return `${message}.`;
@@ -21,7 +19,7 @@ module.exports.toMessage = function toMessage(policy) {
       return `${result}, en indien ${condition}`;
     }
     return `${result}, indien ${condition}`;
-  }, "");
+  }, '');
 
   return `${message} ${conditionsPart}.`;
 };
