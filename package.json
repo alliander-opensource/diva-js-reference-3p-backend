@@ -8,6 +8,7 @@
     "dev": "nodemon -e js,html src/server.js",
     "prod": "node src/server.js",
     "lint": "./node_modules/.bin/eslint -c .eslintrc src",
+    "migrate": "./node_modules/.bin/knex migrate:latest",
     "test": "mocha 'src/**/*.e2e.js'",
     "test:watch": "mocha --watch 'src/**/*.e2e.js'",
     "test:unit": "mocha 'src/**/*.spec.js'"

@@ -17,8 +17,8 @@ module.exports = function requestHandler(req, res) {
       street: attributes['pbdf.pbdf.idin.address'][0],
       city: attributes['pbdf.pbdf.idin.city'][0],
     }))
-    .then(address => Policy.query().where('owner', '=', address))
-    .then(res.json)
+    .then(owner => Policy.query().where('owner', '=', owner))
+    .then(policies => res.json(policies))
     .catch((err) => {
       console.log(err);
       return res.end('Something went wrong.');
