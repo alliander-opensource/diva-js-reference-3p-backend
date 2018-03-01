@@ -11,22 +11,21 @@ module.exports = function requestHandler(req, res) {
   const content = req.body.content;
   const message = req.body.message;
   if (content) {
-    return Promise.resolve(() => {
-      if (message) {
-        return diva
-          .startSignatureSession(content, null, message)
-      } else {
-        return diva
-          .startDisclosureSession(req.sessionId, content)
-      }
-    })
-    .then((irmaSessionData) => {
-      res.setHeader('Content-type', 'application/json; charset=utf-8');
-      res.json(irmaSessionData);
-    })
-    .catch((error) => {
-      res.end(error.toString());
-    });
+    Promise
+      .resolve()
+      .then(() => {
+        if (message) {
+          return diva.startSignatureSession(content, null, message);
+        }
+        return diva.startDisclosureSession(req.sessionId, content);
+      })
+      .then((irmaSessionData) => {
+        res.setHeader('Content-type', 'application/json; charset=utf-8');
+        res.json(irmaSessionData);
+      })
+      .catch((error) => {
+        res.end(error.toString());
+      });
   } else {
     res.end('content not set.');
   }
