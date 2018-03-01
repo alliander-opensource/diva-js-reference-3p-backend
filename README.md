@@ -86,7 +86,7 @@ psql -c "ALTER USER diva_policies WITH SUPERUSER"
 
 createdb -e -O diva_policies diva_policies
 
-export DIVA_POLICIES_DATABASE_URL=postgres://postgres:postgres@localhost:5432/tippiq_id
+export DIVA_POLICIES_DATABASE_URL=postgres://diva_policies:diva_policies@localhost:5432/diva_policies
 
 ## Tests
 
