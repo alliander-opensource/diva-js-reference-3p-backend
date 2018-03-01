@@ -1,5 +1,3 @@
-const diva = require('diva-irma-js');
-const Policy = require('../../database/models/Policy');
 const policy = require('./policy.js');
 
 /**
