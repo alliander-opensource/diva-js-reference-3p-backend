@@ -35,6 +35,11 @@ spec:
             secretKeyRef:
               name: {appName}
               key: IRMA_API_SERVER_PUBLIC_KEY
+        - name: DIVA_POLICIES_DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: {appName}
+              key: DIVA_POLICIES_DATABASE_URL
         image: {image}
         resources:
           limits:

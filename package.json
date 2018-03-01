@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon -e js,html src/server.js",
-    "prod": "node src/server.js",
+    "prod": "./node_modules/.bin/knex migrate:latest; node src/server.js",
     "lint": "./node_modules/.bin/eslint -c .eslintrc src",
     "migrate": "./node_modules/.bin/knex migrate:latest",
     "test": "mocha 'src/**/*.e2e.js'",
@@ -31,7 +31,7 @@
     "basic-auth": "2.0.0",
     "cookie-encrypter": "0.2.3",
     "cookie-parser": "1.4.3",
-    "diva-irma-js": "git+https://github.com/Alliander/diva-irma-js.git#4653f46174371b856608cbeaae347dede42054c5",
+    "diva-irma-js": "git+https://github.com/Alliander/diva-irma-js.git#28ad1fbe4bc5f590c9d7471308c8b2646bbe03f6",
     "express": "4.16.1",
     "knex": "0.14.4",
     "objection": "1.0.0",
