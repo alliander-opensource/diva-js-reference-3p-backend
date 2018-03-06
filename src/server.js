@@ -17,6 +17,11 @@ diva.init({
   irmaApiServerUrl: config.irmaApiServerUrl,
   irmaApiServerPublicKey: config.irmaApiServerPublicKey,
   useRedis: config.useRedis,
+  jwtIrmaApiServerSignatureRequestOptions: {
+    algorithm: 'RS256',
+    issuer: 'Huishoudboekje',
+    subject: 'signature_request',
+  },
   redisOptions: {
     host: config.redisHost,
     port: config.redisPort,
