@@ -1,4 +1,5 @@
 const express = require('express');
+const proxy = require('express-http-proxy');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cookieEncrypter = require('cookie-encrypter');
@@ -35,6 +36,10 @@ app.use(cookieEncrypter(config.cookieSecret));
 app.use(bodyParser.text()); // TODO: restrict to one endpoint
 app.use(bodyParser.json()); // TODO: restrict to one endpoint
 app.use(simpleSession);
+
+app.use('/api/huishoudboekje', proxy('demo.api.huishoudboekje030.nl', {
+  https: false,
+}));
 
 
 // Reference implementation session management endpoints
