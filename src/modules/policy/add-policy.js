@@ -25,8 +25,9 @@ function verifySignature(signature, policy) {
       checkAttributes(signature.attributes, jwtBody.attributes) &&
       jwtBody.message === signature.message &&
       toMessage(policy) === signature.message &&
-      signature.attributes['irma-demo.idin.idin.address'] !== null &&
-      signature.attributes['irma-demo.idin.idin.city'] !== null
+      signature.attributes['irma-demo.idin.idin.initials'] !== null &&
+      signature.attributes['irma-demo.idin.idin.familyname'] !== null &&
+      signature.attributes['irma-demo.MijnOverheid.root.BSN'] !== null
     ))
     .catch((error) => {
       console.log('error: ', error);
@@ -53,8 +54,9 @@ module.exports = function requestHandler(req, res) {
           message: signature.message,
           irma_signature: signature,
           owner: {
-            street: signature.attributes['irma-demo.idin.idin.address'],
-            city: signature.attributes['irma-demo.idin.idin.city'],
+            initials: signature.attributes['irma-demo.idin.idin.initials'],
+            familiyname: signature.attributes['irma-demo.idin.idin.familyname'],
+            bsn: signature.attributes['irma-demo.MijnOverheid.root.BSN'],
           },
         })
           .then(dbResult => (

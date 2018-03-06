@@ -8,7 +8,6 @@ const actorNames = {
  * @param {object} policy The Policy to convert
  * @returns {string} the resulting message string
  */
-// Het Huishoudboekje, de Gemeente Utrecht en relevante ketenpartners mogen mijn (persoonlijke) gegevens verwerken en onderling delen, zodat het Huishoudboekje mijn Inkomsten en Vaste Lasten voor mij kan beheren.
 // actor: Het Huishoudboekje, de Gemeente Utrecht en relevante ketenpartners
 // actee: mijn (persoonlijke) gegevens
 // action: verwerken en onderling delen
