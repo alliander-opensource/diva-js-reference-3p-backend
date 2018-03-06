@@ -10,7 +10,7 @@ const diva = require('diva-irma-js');
 module.exports = function requestHandler(req, res) {
   const irmaSessionId = req.query.irmaSessionId;
   if (!irmaSessionId) {
-    return res.json({ status: 'INVALID' });
+    return res.json({ serverSatus: 'INVALID' });
   }
   return diva
     .getIrmaSignatureStatus(irmaSessionId)
