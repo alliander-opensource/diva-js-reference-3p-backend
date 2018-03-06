@@ -29,10 +29,10 @@ describe('Disclosure session', () => {
         content: [
           {
             label: 'Address',
-            attributes: ['pbdf.pbdf.idin.address'],
+            attributes: ['irma-demo.idin.idin.address'],
           }, {
             label: 'City',
-            attributes: ['pbdf.pbdf.idin.city'],
+            attributes: ['irma-demo.idin.idin.city'],
           },
         ],
       })
@@ -57,8 +57,8 @@ describe('Disclosure session', () => {
 
   // TODO add nock to stub IRMA API SERVER
   // see https://github.com/node-nock/nock
-  const addressAttributeType = 'pbdf.pbdf.idin.address';
-  const cityAttributeType = 'pbdf.pbdf.idin.city';
+  const addressAttributeType = 'irma-demo.idin.idin.address';
+  const cityAttributeType = 'irma-demo.idin.idin.city';
 
   xit('adds the disclosed attributes to the users\' session', () =>
     request(app)

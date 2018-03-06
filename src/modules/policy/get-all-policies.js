@@ -14,8 +14,8 @@ module.exports = function requestHandler(req, res) {
   diva
     .getAttributes(sessionId)
     .then(attributes => ({
-      street: attributes['pbdf.pbdf.idin.address'][0],
-      city: attributes['pbdf.pbdf.idin.city'][0],
+      street: attributes['irma-demo.idin.idin.address'][0],
+      city: attributes['irma-demo.idin.idin.city'][0],
     }))
     .then(owner => Policy.query().where('owner', '=', owner))
     .then(policies => res.json(policies))
