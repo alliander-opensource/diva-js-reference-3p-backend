@@ -8,10 +8,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - {appName}.appx.cloud
+    - dev-{appName}.appx.cloud
     secretName: wildcard-appx-cloud-cert
   rules:
-  - host: {appName}.appx.cloud
+  - host: dev-{appName}.appx.cloud
     http:
       paths:
       - backend:
