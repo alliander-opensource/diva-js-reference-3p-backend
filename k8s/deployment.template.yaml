@@ -20,11 +20,6 @@ spec:
         - configMapRef:
             name: {appName}
         env:
-        - name: REDIS_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: diva-redis-redis
-              key: redis-password
         - name: BING_MAPS_API_KEY
           valueFrom:
             secretKeyRef:
