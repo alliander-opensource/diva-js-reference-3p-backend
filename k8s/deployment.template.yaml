@@ -47,7 +47,7 @@ spec:
             memory: 1Gi
           requests:
             cpu: 100m
-            memory: 1Gi
+            memory: 512Mi
         ports:
         - containerPort: 4000
           protocol: TCP
