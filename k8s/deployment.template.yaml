@@ -20,11 +20,6 @@ spec:
         - configMapRef:
             name: {appName}
         env:
-        - name: REDIS_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: diva-redis-redis
-              key: redis-password
         - name: BING_MAPS_API_KEY
           valueFrom:
             secretKeyRef:
@@ -47,7 +42,7 @@ spec:
             memory: 1Gi
           requests:
             cpu: 100m
-            memory: 1Gi
+            memory: 512Mi
         ports:
         - containerPort: 4000
           protocol: TCP

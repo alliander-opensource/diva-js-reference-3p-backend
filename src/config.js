@@ -13,7 +13,7 @@ const config = {
   apiKey: process.env.IRMA_API_SERVER_KEY ? process.env.IRMA_API_SERVER_KEY : 'FILL_IN',
   irmaApiServerUrl: process.env.IRMA_API_SERVER_URL ? process.env.IRMA_API_SERVER_URL : 'http://localhost:8081/irma_api_server',
   irmaApiServerPublicKey: process.env.IRMA_API_SERVER_PUBLIC_KEY ? process.env.IRMA_API_SERVER_PUBLIC_KEY : 'FILL_IN',
-  useRedis: process.env.USE_REDIS ? process.env.USE_REDIS : false,
+  useRedis: process.env.USE_REDIS && process.env.USE_REDIS === 'true',
   redisHost: process.env.REDIS_HOST ? process.env.REDIS_HOST : 'localhost',
   redisPort: process.env.REDIS_PORT ? process.env.REDIS_PORT : '6379',
   redisPassword: process.env.REDIS_PASSWORD ? process.env.REDIS_PASSWORD : '',

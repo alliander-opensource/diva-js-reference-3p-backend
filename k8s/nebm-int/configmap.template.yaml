@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {appName}
+  namespace: {namespace}
+  labels:
+    app: {appName}
+data:
+  REDIS_HOST: "diva-redis-redis"
+  REDIS_PORT: "6379"
+  USE_REDIS: "false"
+  BASE_URL: "https://int-diva-js-reference-3p.appx.cloud"
+  IRMA_API_SERVER_URL: "https://dev-diva-irma-api-server.appx.cloud"
