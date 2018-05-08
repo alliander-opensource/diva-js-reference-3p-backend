@@ -9,9 +9,16 @@ const diva = require('diva-irma-js');
  */
 module.exports = function requestHandler(req, res) {
   const content = req.body.content;
+  const message = req.body.message;
   if (content) {
-    diva
-      .startDisclosureSession(req.sessionId, content)
+    Promise
+      .resolve()
+      .then(() => {
+        if (message) {
+          return diva.startSignatureSession(content, null, message);
+        }
+        return diva.startDisclosureSession(req.sessionId, content);
+      })
       .then((irmaSessionData) => {
         res.setHeader('Content-type', 'application/json; charset=utf-8');
         res.json(irmaSessionData);
