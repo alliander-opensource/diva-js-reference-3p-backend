@@ -78,16 +78,6 @@ By default the DIVA reference implementation runs with `in memory` session manag
 
 The MyHome example in the [diva-js-reference-3p-frontend](https://github.com/Alliander/diva-js-reference-3p-frontend) frontend displays a map image that uses the Bing maps API through this backend. To make it work, provide your own private bing maps api key as an export, or set a placeholder (of course then the Bing API won't work correctly). A Bing maps key can be obtained from [Bing](https://msdn.microsoft.com/en-us/library/ff428642.aspx).
 
-### Postgres setup for the Policies Features
-
-psql -c "create user diva_policies with password 'diva_policies';"
-
-psql -c "ALTER USER diva_policies WITH SUPERUSER"
-
-createdb -e -O diva_policies diva_policies
-
-export DIVA_POLICIES_DATABASE_URL=postgres://diva_policies:diva_policies@localhost:5432/diva_policies
-
 ## Tests
 
 There are currently no tests for the backend.
