@@ -33,6 +33,7 @@
     "cookie-parser": "1.4.3",
     "diva-irma-js": "git+https://github.com/Alliander/diva-irma-js.git#cc9d919508853971b41d728ae04fb753bef84894",
     "express": "4.16.1",
+    "moment": "2.22.1",
     "qr-image": "3.2.0",
     "superagent": "3.8.0",
     "uuid": "3.1.0"
