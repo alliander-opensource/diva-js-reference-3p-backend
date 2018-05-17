@@ -54,5 +54,4 @@ module.exports = function requestHandler(req, res) {
     .catch((error) => {
       res.end(error.toString());
     });
-
 };
