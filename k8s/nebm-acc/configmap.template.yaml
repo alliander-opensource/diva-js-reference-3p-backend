@@ -10,4 +10,10 @@ data:
   REDIS_PORT: "6379"
   USE_REDIS: "false"
   BASE_URL: "https://acc-diva-js-reference-3p.appx.cloud"
-  IRMA_API_SERVER_URL: "https://dev-diva-irma-api-server.appx.cloud"
+  IRMA_API_SERVER_URL: "https://acc-diva-irma-api-server.appx.cloud"
+  JWT_DISCLOSURE_ALGORITHM: 'RS256'
+  JWT_DISCLOSURE_ISSUER: 'diva'
+  JWT_SIGNATURE_ALGORITHM: 'RS256'
+  JWT_SIGNATURE_ISSUER: 'diva'
+  JWT_ISSUE_ALGORITHM: 'RS256'
+  JWT_ISSUE_ISSUER: 'diva'

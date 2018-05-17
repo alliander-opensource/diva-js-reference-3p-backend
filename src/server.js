@@ -6,6 +6,8 @@ const diva = require('diva-irma-js');
 const simpleSession = require('./modules/simple-session');
 const config = require('./config');
 
+const { jwtDisclosureRequestOptions, jwtSignatureRequestOptions, jwtIssueRequestOptions } = config;
+
 diva.init({
   baseUrl: config.baseUrl,
   apiKey: config.apiKey,
@@ -18,18 +20,15 @@ diva.init({
     password: config.redisPassword,
   },
   jwtDisclosureRequestOptions: {
-    algorithm: 'none',
-    issuer: 'diva',
+    ...jwtDisclosureRequestOptions,
     subject: 'verification_request',
   },
   jwtSignatureRequestOptions: {
-    algorithm: 'none',
-    issuer: 'diva',
+    ...jwtSignatureRequestOptions,
     subject: 'signature_request',
   },
   jwtIssueRequestOptions: {
-    algorithm: 'none',
-    issuer: 'diva',
+    ...jwtIssueRequestOptions,
     subject: 'issue_request',
   },
 });
