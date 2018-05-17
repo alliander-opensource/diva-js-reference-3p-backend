@@ -21,17 +21,14 @@ const config = {
   jwtDisclosureRequestOptions: {
     algorithm: process.env.JWT_DISCLOSURE_ALGORITHM ? process.env.JWT_DISCLOSURE_ALGORITHM : 'none',
     issuer: process.env.JWT_DISCLOSURE_ISSUER ? process.env.JWT_DISCLOSURE_ISSUER : 'diva',
-    subject: process.env.JWT_DISCLOSURE_SUBJECT ? process.env.JWT_DISCLOSURE_SUBJECT : 'verification_request',
   },
   jwtSignatureRequestOptions: {
     algorithm: process.env.JWT_SIGNATURE_ALGORITHM ? process.env.JWT_SIGNATURE_ALGORITHM : 'none',
     issuer: process.env.JWT_SIGNATURE_ISSUER ? process.env.JWT_SIGNATURE_ISSUER : 'diva',
-    subject: process.env.JWT_SIGNATURE_SUBJECT ? process.env.JWT_SIGNATURE_SUBJECT : 'signature_request',
   },
   jwtIssueRequestOptions: {
     algorithm: process.env.JWT_ISSUE_ALGORITHM ? process.env.JWT_ISSUE_ALGORITHM : 'none',
     issuer: process.env.JWT_ISSUE_ISSUER ? process.env.JWT_ISSUE_ISSUER : 'diva',
-    subject: process.env.JWT_ISSUE_SUBJECT ? process.env.JWT_ISSUE_SUBJECT : 'issue_request',
   },
 };
 
