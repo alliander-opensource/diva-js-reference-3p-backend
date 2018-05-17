@@ -17,21 +17,9 @@ diva.init({
     port: config.redisPort,
     password: config.redisPassword,
   },
-  jwtDisclosureRequestOptions: {
-    algorithm: 'none',
-    issuer: 'diva',
-    subject: 'verification_request',
-  },
-  jwtSignatureRequestOptions: {
-    algorithm: 'none',
-    issuer: 'diva',
-    subject: 'signature_request',
-  },
-  jwtIssueRequestOptions: {
-    algorithm: 'none',
-    issuer: 'diva',
-    subject: 'issue_request',
-  },
+  jwtDisclosureRequestOptions: config.jwtDisclosureRequestOptions,
+  jwtSignatureRequestOptions: config.jwtSignatureRequestOptions,
+  jwtIssueRequestOptions: config.jwtIssueRequestOptions,
 });
 
 const app = express();
