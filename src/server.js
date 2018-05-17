@@ -17,6 +17,21 @@ diva.init({
     port: config.redisPort,
     password: config.redisPassword,
   },
+  jwtDisclosureRequestOptions: {
+    algorithm: 'none',
+    issuer: 'diva',
+    subject: 'verification_request',
+  },
+  jwtSignatureRequestOptions: {
+    algorithm: 'none',
+    issuer: 'diva',
+    subject: 'signature_request',
+  },
+  jwtIssueRequestOptions: {
+    algorithm: 'none',
+    issuer: 'diva',
+    subject: 'issue_request',
+  },
 });
 
 const app = express();
@@ -40,6 +55,9 @@ app.use('/api/images/address.jpg', diva.requireAttributes(['pbdf.pbdf.idin.addre
 
 // DIVA signature endpoints
 app.get('/api/signature-status', require('./actions/signature-status'));
+
+// DIVA issue endpoints
+app.get('/api/issue-status', require('./actions/issue-status'));
 
 const server = app.listen(config.port, () => {
   console.log(`Diva Reference Third Party backend listening on port ${config.port} !`); // eslint-disable-line no-console
