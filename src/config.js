@@ -10,14 +10,29 @@ const config = {
     secure: false, // TODO: NOTE: must be set to true and be used with HTTPS only!
   },
   baseUrl: process.env.BASE_URL ? process.env.BASE_URL : 'http://localhost:4000',
-  apiKey: process.env.IRMA_API_SERVER_KEY ? process.env.IRMA_API_SERVER_KEY : 'FILL_IN',
-  irmaApiServerUrl: process.env.IRMA_API_SERVER_URL ? process.env.IRMA_API_SERVER_URL : 'http://localhost:8081/irma_api_server',
+  apiKey: process.env.IRMA_API_SERVER_KEY ? process.env.IRMA_API_SERVER_KEY : null,
+  irmaApiServerUrl: process.env.IRMA_API_SERVER_URL ? process.env.IRMA_API_SERVER_URL : 'http://localhost:8088/irma_api_server',
   irmaApiServerPublicKey: process.env.IRMA_API_SERVER_PUBLIC_KEY ? process.env.IRMA_API_SERVER_PUBLIC_KEY : 'FILL_IN',
   useRedis: process.env.USE_REDIS && process.env.USE_REDIS === 'true',
   redisHost: process.env.REDIS_HOST ? process.env.REDIS_HOST : 'localhost',
   redisPort: process.env.REDIS_PORT ? process.env.REDIS_PORT : '6379',
   redisPassword: process.env.REDIS_PASSWORD ? process.env.REDIS_PASSWORD : '',
   bingMapsApiKey: process.env.BING_MAPS_API_KEY ? process.env.BING_MAPS_API_KEY : '',
+  jwtDisclosureRequestOptions: {
+    algorithm: process.env.JWT_DISCLOSURE_ALGORITHM ? process.env.JWT_DISCLOSURE_ALGORITHM : 'none',
+    issuer: process.env.JWT_DISCLOSURE_ISSUER ? process.env.JWT_DISCLOSURE_ISSUER : 'diva',
+    subject: process.env.JWT_DISCLOSURE_SUBJECT ? process.env.JWT_DISCLOSURE_SUBJECT : 'verification_request',
+  },
+  jwtSignatureRequestOptions: {
+    algorithm: process.env.JWT_SIGNATURE_ALGORITHM ? process.env.JWT_SIGNATURE_ALGORITHM : 'none',
+    issuer: process.env.JWT_SIGNATURE_ISSUER ? process.env.JWT_SIGNATURE_ISSUER : 'diva',
+    subject: process.env.JWT_SIGNATURE_SUBJECT ? process.env.JWT_SIGNATURE_SUBJECT : 'signature_request',
+  },
+  jwtIssueRequestOptions: {
+    algorithm: process.env.JWT_ISSUE_ALGORITHM ? process.env.JWT_ISSUE_ALGORITHM : 'none',
+    issuer: process.env.JWT_ISSUE_ISSUER ? process.env.JWT_ISSUE_ISSUER : 'diva',
+    subject: process.env.JWT_ISSUE_SUBJECT ? process.env.JWT_ISSUE_SUBJECT : 'issue_request',
+  },
 };
 
 module.exports = config;

@@ -10,4 +10,13 @@ data:
   REDIS_PORT: "6379"
   USE_REDIS: "false"
   BASE_URL: "https://int-diva-js-reference-3p.appx.cloud"
-  IRMA_API_SERVER_URL: "https://dev-diva-irma-api-server.appx.cloud"
+  IRMA_API_SERVER_URL: "https://int-diva-irma-api-server.appx.cloud"
+  JWT_DISCLOSURE_ALGORITHM: 'none'
+  JWT_DISCLOSURE_ISSUER: 'diva'
+  JWT_DISCLOSURE_SUBJECT: 'verification_request'
+  JWT_SIGNATURE_ALGORITHM: 'none'
+  JWT_SIGNATURE_ISSUER: 'diva'
+  JWT_SIGNATURE_SUBJECT: 'signature_request'
+  JWT_ISSUE_ALGORITHM: 'none'
+  JWT_ISSUE_ISSUER: 'diva'
+  JWT_ISSUE_SUBJECT: 'issue_request'
