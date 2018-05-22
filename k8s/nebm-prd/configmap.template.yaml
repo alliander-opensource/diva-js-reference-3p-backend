@@ -10,4 +10,4 @@ data:
   REDIS_PORT: "6379"
   USE_REDIS: "false"
   BASE_URL: "https://diva-js-reference-3p.appx.cloud"
-  IRMA_API_SERVER_URL: "https://dev-diva-irma-api-server.appx.cloud"
+  IRMA_API_SERVER_URL: "https://diva-irma-api-server.appx.cloud"
