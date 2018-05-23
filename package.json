@@ -31,7 +31,7 @@
     "basic-auth": "2.0.0",
     "cookie-encrypter": "0.2.3",
     "cookie-parser": "1.4.3",
-    "diva-irma-js": "git+https://github.com/Alliander/diva-irma-js.git#1dd725c0647b6864e4be7ad17325faa21a53c56f",
+    "diva-irma-js": "git+https://github.com/Alliander/diva-irma-js.git#c39d00d4a18b8d62f1653539bd535cdc74222ae9",
     "express": "4.16.1",
     "moment": "2.22.1",
     "qr-image": "3.2.0",

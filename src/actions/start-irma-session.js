@@ -27,7 +27,11 @@ module.exports = function requestHandler(req, res) {
           if (!content) {
             return res.end('content not set.');
           }
-          console.log(`Requesting signing of ${message} with ${content}`);
+          if (!message) {
+            return res.end('message not set.');
+          }
+
+          console.log(`Requesting signing of "${message}" with ${content}`);
           return diva.startSignatureSession(content, null, message);
 
         case 'ISSUE':
