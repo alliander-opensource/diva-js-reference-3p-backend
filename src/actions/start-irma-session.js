@@ -2,7 +2,7 @@ const diva = require('diva-irma-js');
 const moment = require('moment');
 
 /**
- * Request handler for starting a new disclosure session via POST request
+ * Request handler for starting a new irma session via POST request
  * @function requestHandler
  * @param {object} req Express request object, containing an IRMA content object
  * @param {object} res Express response object
@@ -21,7 +21,7 @@ module.exports = function requestHandler(req, res) {
             return res.end('content not set.');
           }
           console.log(`Requesting disclosure of ${content}`);
-          return diva.startDisclosureSession(req.sessionId, content);
+          return diva.startDisclosureSession(content, null, req.sessionId);
 
         case 'SIGN':
           if (!content) {
