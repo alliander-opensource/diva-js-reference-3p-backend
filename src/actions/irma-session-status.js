@@ -1,4 +1,5 @@
 const diva = require('diva-irma-js');
+const { addIrmaProofToSession } = require('diva-irma-js/session');
 
 /**
  * Request handler
@@ -21,8 +22,13 @@ module.exports = function requestHandler(req, res) {
         .then(result => res.json(result));
     case 'DISCLOSE':
       return diva
-        .getIrmaAPISessionStatus(req.sessionId, irmaSessionId)
-        .then(status => res.json(status));
+        .getIrmaDisclosureStatus(irmaSessionId)
+        .then((result) => {
+          if (result.serverStatus === 'DONE') {
+            addIrmaProofToSession(result.disclosureProofResult, irmaSessionId);
+          }
+          res.json(result);
+        });
     case 'SIGN':
       return diva
         .getIrmaSignatureStatus(irmaSessionId)

@@ -1,4 +1,4 @@
-const diva = require('diva-irma-js');
+const divaSession = require('diva-irma-js/session');
 const config = require('./../config');
 const request = require('superagent');
 
@@ -11,7 +11,7 @@ const request = require('superagent');
  */
 module.exports = function requestHandler(req, res) {
   const sessionId = req.sessionId;
-  diva.getAttributes(sessionId)
+  divaSession.getAttributes(sessionId)
     .then((attributes) => {
       const street = attributes['pbdf.pbdf.idin.address'][0].replace(' ', '%20');
       const city = attributes['pbdf.pbdf.idin.city'][0];
