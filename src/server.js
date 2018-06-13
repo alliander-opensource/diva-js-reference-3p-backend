@@ -65,7 +65,7 @@ app.use('/api/images/address.jpg', divaExpress.requireAttributes(divaSession, ['
 
 const server = app.listen(config.port, () => {
   console.log(`Diva Reference Third Party backend listening on port ${config.port} !`); // eslint-disable-line no-console
-  // console.log(`Diva version ${diva.version()}`); // eslint-disable-line no-console
+  console.log(`Diva version ${diva.version()}`); // eslint-disable-line no-console
 });
 
 module.exports = { app, server };
