@@ -5,16 +5,20 @@ const cookieEncrypter = require('cookie-encrypter');
 const simpleSession = require('./modules/simple-session');
 const config = require('./config');
 
-const divaState = require('diva-irma-js/diva-state')({
+const diva = require('diva-irma-js');
+const divaExpress = require('diva-irma-js/express');
+const divaSession = require('diva-irma-js/session');
+
+const { jwtDisclosureRequestOptions, jwtSignatureRequestOptions, jwtIssueRequestOptions } = config;
+
+const divaStateOptions = {
   useRedis: config.useRedis,
   redisOptions: {
     host: config.redisHost,
     port: config.redisPort,
     password: config.redisPassword,
   },
-});
-
-const { jwtDisclosureRequestOptions, jwtSignatureRequestOptions, jwtIssueRequestOptions } = config;
+};
 
 const divaOptions = {
   baseUrl: config.baseUrl,
@@ -33,12 +37,12 @@ const divaOptions = {
     ...jwtIssueRequestOptions,
     subject: 'issue_request',
   },
+  ...divaStateOptions,
 };
 
 // Init diva
-require('diva-irma-js')(divaState, divaOptions);
-
-const divaExpress = require('diva-irma-js/express')(divaState);
+diva.init(divaOptions);
+divaSession.init(divaStateOptions);
 
 const app = express();
 app.use(cookieParser(config.cookieSecret));
@@ -55,10 +59,9 @@ app.get('/api/deauthenticate', require('./actions/deauthenticate'));
 // DIVA IRMA endpoints
 app.get('/api/start-disclosure-session', require('./actions/start-simple-disclosure-session'));
 app.post('/api/start-irma-session', require('./actions/start-irma-session'));
-app.post('/api/start-ean-issue-session', divaExpress.requireAttributes(['pbdf.pbdf.idin.address', 'pbdf.pbdf.idin.zipcode']), require('./actions/start-ean-issue-session'));
 app.get('/api/irma-session-status', require('./actions/irma-session-status'));
 
-app.use('/api/images/address.jpg', divaExpress.requireAttributes(['pbdf.pbdf.idin.address', 'pbdf.pbdf.idin.city']), require('./actions/get-address-map'));
+app.use('/api/images/address.jpg', divaExpress.requireAttributes(divaSession, ['pbdf.pbdf.idin.address', 'pbdf.pbdf.idin.city']), require('./actions/get-address-map'));
 
 const server = app.listen(config.port, () => {
   console.log(`Diva Reference Third Party backend listening on port ${config.port} !`); // eslint-disable-line no-console
