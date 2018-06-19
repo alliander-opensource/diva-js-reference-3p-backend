@@ -10,10 +10,10 @@ function startIssueSession(credentialType, sessionId) {
         credential: 'irma-demo.MijnOverheid.address',
         validity: moment().add(6, 'months').unix(),
         attributes: {
-          country: 'The Netherlands2',
-          city: 'Nijmegen',
-          street: 'Toernooiveld 212',
-          zipcode: '6525 EC',
+          country: 'The Netherlands',
+          city: 'The Hague',
+          street: 'Lange Poten 4',
+          zipcode: '2511 CL',
         },
       }]);
   }
