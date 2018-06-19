@@ -1,4 +1,5 @@
 const diva = require('diva-irma-js');
+const { addAttributesFromProof } = require('diva-irma-js/session');
 
 /**
  * Request handler
@@ -15,17 +16,20 @@ module.exports = function requestHandler(req, res) {
   }
 
   switch (irmaSessionType) {
-    case 'ISSUE':
-      return diva
-        .getIrmaIssueStatus(irmaSessionId)
-        .then(result => res.json(result));
     case 'DISCLOSE':
       return diva
-        .getIrmaAPISessionStatus(req.sessionId, irmaSessionId)
-        .then(status => res.json(status));
+        .getIrmaStatus(irmaSessionType, irmaSessionId)
+        .then((result) => {
+          if (result.serverStatus === 'DONE') {
+            addAttributesFromProof(result.disclosureProofResult, irmaSessionId);
+          }
+          res.json(result);
+        });
+    case 'ISSUE':
+      // falls through
     case 'SIGN':
       return diva
-        .getIrmaSignatureStatus(irmaSessionId)
+        .getIrmaStatus(irmaSessionType, irmaSessionId)
         .then(result => res.json(result));
     default:
       return res.json({ serverStatus: 'INVALID' });
