@@ -1,10 +1,13 @@
 const diva = require('diva-irma-js');
+const divaSession = require('diva-irma-js/session');
+const { startEanIssueSession } = require('./../modules/ean-issue');
 const moment = require('moment');
 
 function startIssueSession(credentialType, sessionId) {
   switch (credentialType) {
     case 'EAN':
-      throw new Error(`Error starting ${sessionId}. Not supported yet!`);
+      return divaSession.requireAttributes(sessionId, ['pbdf.pbdf.idin.address', 'pbdf.pbdf.idin.zipcode'])
+        .then(() => startEanIssueSession(sessionId));
     default:
       return diva.startIssueSession([{
         credential: 'irma-demo.MijnOverheid.address',

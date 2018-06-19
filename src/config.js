@@ -10,6 +10,7 @@ const config = {
     secure: false, // TODO: NOTE: must be set to true and be used with HTTPS only!
   },
   baseUrl: process.env.BASE_URL ? process.env.BASE_URL : 'http://localhost:4000',
+  eanServiceUrl: process.env.EAN_SERVICE_URL ? process.env.EAN_SERVICE_URL : 'http://localhost:4001/api/get-ean',
   apiKey: process.env.IRMA_API_SERVER_KEY ? process.env.IRMA_API_SERVER_KEY : null,
   irmaApiServerUrl: process.env.IRMA_API_SERVER_URL ? process.env.IRMA_API_SERVER_URL : 'http://localhost:8088/irma_api_server',
   irmaApiServerPublicKey: process.env.IRMA_API_SERVER_PUBLIC_KEY ? process.env.IRMA_API_SERVER_PUBLIC_KEY : 'FILL_IN',
