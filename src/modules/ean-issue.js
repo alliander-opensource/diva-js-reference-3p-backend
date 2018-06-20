@@ -4,7 +4,7 @@ const config = require('./../config');
 const request = require('superagent');
 const moment = require('moment');
 const BPromise = require('bluebird');
-const uuidv4 = require('uuid/v4');
+const nanoid = require('nanoid');
 
 function getAddressZipcode(sessionId) {
   return divaSession.getAttributes(sessionId)
@@ -51,7 +51,7 @@ function constructEanDisclosureContent(address, zipcode) {
 
 function constructEanAttributes(eanelec, eangas) {
   const attributes = {
-    pseudonym: uuidv4(),
+    pseudonym: nanoid(),
     eanelec,
     eangas,
   };
