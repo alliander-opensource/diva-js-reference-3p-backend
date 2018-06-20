@@ -13,8 +13,8 @@ module.exports = function requestHandler(req, res) {
   const sessionId = req.sessionId;
   divaSession.getAttributes(sessionId)
     .then((attributes) => {
-      const street = attributes['pbdf.pbdf.idin.address'][0].replace(' ', '%20');
-      const city = attributes['pbdf.pbdf.idin.city'][0];
+      const street = attributes['irma-demo.MijnOverheid.address.street'][0].replace(' ', '%20');
+      const city = attributes['irma-demo.MijnOverheid.address.city'][0];
       const url = `https://dev.virtualearth.net/REST/v1/Imagery/Map/CanvasLight/Netherlands%20${city}%20${street}/1`;
       request
         .get(url)
