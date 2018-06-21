@@ -15,16 +15,20 @@ function getAddressZipcode(sessionId) {
     });
 }
 
-function getEan(address, zipcode) {
-  const elecEanPromise = request
+function getEanElec(address, zipcode) {
+  return request
     .post(config.eanServiceUrl)
     .send({ adres: address, postcode: zipcode });
+}
 
-  const gasEanPromise = request
+function getEanGas(address, zipcode) {
+  return request
     .post(config.eanServiceUrl)
     .send({ adres: address, postcode: zipcode, mode: 'GAS' });
+}
 
-  return BPromise.all([elecEanPromise, gasEanPromise])
+function getEans(address, zipcode) {
+  return BPromise.all([getEanElec(address, zipcode), getEanGas(address, zipcode)])
     .then(responses => ([
       responses[0].body.ean, // elecEan
       responses[1].body.ean, // gasEan
@@ -72,7 +76,7 @@ function getEanIssueSession(elecEan, gasEan, address, zipcode) {
 
 function startEanIssueSession(sessionId) {
   return getAddressZipcode(sessionId)
-    .then(attributes => getEan(...attributes))
+    .then(attributes => getEans(...attributes))
     .then(eanInfo => getEanIssueSession(...eanInfo));
 }
 
