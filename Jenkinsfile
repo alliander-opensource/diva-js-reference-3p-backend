@@ -8,8 +8,8 @@ def buildClosure = {
   stage('Lint')
   sh 'yarn run lint'
 
-  stage('Test')
-  sh 'echo TODO!'
+  stage('Unit tests')
+  // sh 'yarn run test'
 }
 
 def buildParameterMap = [:]
