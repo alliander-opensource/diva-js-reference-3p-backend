@@ -24,7 +24,8 @@ function getEanElec(address, zipcode) {
 function getEanGas(address, zipcode) {
   return request
     .post(config.eanServiceUrl)
-    .send({ adres: address, postcode: zipcode, mode: 'GAS' });
+    .send({ adres: address, postcode: zipcode, mode: 'GAS' })
+    .catch(() => ({ body: { ean: 'Unavailable' } })); // Return Unavailable if GAS cannot be found
 }
 
 function getEans(address, zipcode) {
@@ -81,3 +82,4 @@ function startEanIssueSession(sessionId) {
 }
 
 module.exports.startEanIssueSession = startEanIssueSession;
+module.exports.getEans = getEans;
