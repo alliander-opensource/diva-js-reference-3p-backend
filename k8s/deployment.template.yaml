@@ -16,6 +16,8 @@ spec:
     spec:
       containers:
       - name: {appName}
+        command: ["npm"]
+        args: ["run", "prod"]
         envFrom:
         - configMapRef:
             name: {appName}
