@@ -61,7 +61,7 @@ app.get('/api/start-disclosure-session', require('./actions/start-simple-disclos
 app.post('/api/start-irma-session', require('./actions/start-irma-session'));
 app.get('/api/irma-session-status', require('./actions/irma-session-status'));
 
-app.use('/api/images/address.jpg', divaExpress.requireAttributes(divaSession, ['pbdf.pbdf.idin.address', 'pbdf.pbdf.idin.city']), require('./actions/get-address-map'));
+app.use('/api/images/address.jpg', divaExpress.requireAttributes(divaSession, ['irma-demo.MijnOverheid.address.street', 'irma-demo.MijnOverheid.address.city']), require('./actions/get-address-map'));
 
 const server = app.listen(config.port, () => {
   console.log(`Diva Reference Third Party backend listening on port ${config.port} !`); // eslint-disable-line no-console

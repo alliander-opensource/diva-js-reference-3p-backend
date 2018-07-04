@@ -8,7 +8,7 @@ COPY package.json package-lock.json ./
 
 RUN yarn
 
+RUN npm install -g nodemon
+
 # Bundle app source
 COPY . .
-
-CMD [ "yarn", "run" , "prod" ]

@@ -1,8 +1,8 @@
 const { app, server, request, expect } = require('../common/test-utils');
 
 const API_GET_SESSION_URL = '/api/get-session';
-const API_START_DISCLOSURE_SESSION_URL = '/api/start-disclosure-session';
-const API_DISCLOSURE_STATUS_URL = '/api/disclosure-status';
+const API_START_DISCLOSURE_SESSION_URL = '/api/start-irma-session';
+const API_DISCLOSURE_STATUS_URL = '/api/irma-session-status';
 
 describe('Disclosure session', () => {
   let cookie;
@@ -35,6 +35,7 @@ describe('Disclosure session', () => {
             attributes: ['pbdf.pbdf.idin.city'],
           },
         ],
+        type: 'DISCLOSE',
       })
       .expect(200)
       .expect((res) => {
@@ -46,16 +47,16 @@ describe('Disclosure session', () => {
 
   it('has an endpoint to check disclosure status', () =>
     request(app)
-      .get(`${API_DISCLOSURE_STATUS_URL}?irmaSessionId=${irmaSessionId}`)
+      .get(`${API_DISCLOSURE_STATUS_URL}?irmaSessionId=${irmaSessionId}&irmaSessionType=DISCLOSE`)
       .set('cookie', cookie)
       .expect(200)
       .expect((res) => {
-        expect(res.body).to.have.property('disclosureStatus').and.to.equal('PENDING');
+        expect(res.body).to.have.property('irmaSessionStatus').and.to.equal('PENDING');
         expect(res.body).to.have.property('serverStatus').and.to.equal('INITIALIZED');
       }),
   );
 
-  // TODO add nock to stub IRMA API SERVER
+  // TODO add mock to stub IRMA API SERVER
   // see https://github.com/node-nock/nock
   const addressAttributeType = 'pbdf.pbdf.idin.address';
   const cityAttributeType = 'pbdf.pbdf.idin.city';
