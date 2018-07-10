@@ -18,3 +18,5 @@ data:
   JWT_SIGNATURE_ISSUER: 'diva'
   JWT_ISSUE_ALGORITHM: 'RS256'
   JWT_ISSUE_ISSUER: 'diva'
+  LOG_LEVEL: 'warn'
+  DIVA_LOG_LEVEL: 'warn'

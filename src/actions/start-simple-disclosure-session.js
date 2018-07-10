@@ -1,5 +1,7 @@
 const diva = require('diva-irma-js');
 
+const logger = require('./../common/logger')('actions');
+
 /**
  * Request handler for starting a new disclosure session via GET request for a single attribute
  * @function requestHandler
@@ -18,6 +20,8 @@ module.exports = function requestHandler(req, res) {
         res.json(irmaSessionData);
       })
       .catch((error) => {
+        logger.warn('Error starting IRMA session');
+        logger.debug(error);
         res.end(error.toString());
       });
   } else {

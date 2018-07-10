@@ -18,3 +18,5 @@ data:
   JWT_SIGNATURE_ISSUER: 'diva'
   JWT_ISSUE_ALGORITHM: 'none'
   JWT_ISSUE_ISSUER: 'diva'
+  LOG_LEVEL: 'debug'
+  DIVA_LOG_LEVEL: 'debug'
