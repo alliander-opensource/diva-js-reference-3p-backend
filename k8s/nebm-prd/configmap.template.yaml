@@ -11,3 +11,5 @@ data:
   USE_REDIS: "false"
   BASE_URL: "https://diva-js-reference-3p.appx.cloud"
   IRMA_API_SERVER_URL: "https://dev-diva-irma-api-server.appx.cloud"
+  LOG_LEVEL: 'warn'
+  DIVA_LOG_LEVEL: 'warn'
