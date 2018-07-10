@@ -1,10 +1,12 @@
 const diva = require('diva-irma-js');
 const divaSession = require('diva-irma-js/session');
-const config = require('./../config');
 const request = require('superagent');
 const moment = require('moment');
 const BPromise = require('bluebird');
 const nanoid = require('nanoid');
+
+const config = require('./../config');
+const logger = require('./../common/logger')('eanIssue');
 
 function getAddressZipcode(sessionId) {
   return divaSession.getAttributes(sessionId)
@@ -29,13 +31,20 @@ function getEanGas(address, zipcode) {
 }
 
 function getEans(address, zipcode) {
+  logger.trace('calling getEans()');
   return BPromise.all([getEanElec(address, zipcode), getEanGas(address, zipcode)])
     .then(responses => ([
       responses[0].body.ean, // elecEan
       responses[1].body.ean, // gasEan
       address,
       zipcode,
-    ]));
+    ]))
+    .catch((e) => {
+      logger.debug(e);
+      const error = new Error('Error retrieving EANs from address/zipcode!');
+      logger.warn(error);
+      throw error;
+    });
 }
 
 function constructEanDisclosureContent(address, zipcode) {
@@ -76,6 +85,7 @@ function getEanIssueSession(elecEan, gasEan, address, zipcode) {
 }
 
 function startEanIssueSession(sessionId) {
+  logger.trace('calling startEanIssueSession()');
   return getAddressZipcode(sessionId)
     .then(attributes => getEans(...attributes))
     .then(eanInfo => getEanIssueSession(...eanInfo));

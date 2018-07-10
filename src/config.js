@@ -31,6 +31,8 @@ const config = {
     algorithm: process.env.JWT_ISSUE_ALGORITHM ? process.env.JWT_ISSUE_ALGORITHM : 'none',
     issuer: process.env.JWT_ISSUE_ISSUER ? process.env.JWT_ISSUE_ISSUER : 'diva',
   },
+  logLevel: process.env.LOG_LEVEL ? process.env.LOG_LEVEL : 'off',
+  divaLogLevel: process.env.DIVA_LOG_LEVEL ? process.env.DIVA_LOG_LEVEL : 'off', // Loglevel of Diva library
 };
 
 module.exports = config;

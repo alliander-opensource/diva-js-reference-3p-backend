@@ -1,7 +1,9 @@
+const moment = require('moment');
 const diva = require('diva-irma-js');
 const divaSession = require('diva-irma-js/session');
+
+const logger = require('./../common/logger')('actions');
 const { startEanIssueSession } = require('./../modules/ean-issue');
-const moment = require('moment');
 
 function startIssueSession(credentialType, sessionId) {
   switch (credentialType) {
@@ -39,7 +41,7 @@ module.exports = function requestHandler(req, res) {
           if (!content) {
             return res.end('content not set.');
           }
-          console.log(`Requesting disclosure of ${content}`);
+          logger.debug(`Requesting disclosure of ${content}`);
           return diva.startDisclosureSession(content, null, req.sessionId);
 
         case 'SIGN':
@@ -50,11 +52,11 @@ module.exports = function requestHandler(req, res) {
             return res.end('message not set.');
           }
 
-          console.log(`Requesting signing of "${message}" with ${content}`);
+          logger.debug(`Requesting signing of "${message}" with ${content}`);
           return diva.startSignatureSession(content, null, message);
 
         case 'ISSUE':
-          console.log(`Issuing ${credentialType}`);
+          logger.debug(`Issuing ${credentialType}`);
           return startIssueSession(credentialType, req.sessionId);
         default:
           throw new Error('IRMA session type not specified');
@@ -65,7 +67,8 @@ module.exports = function requestHandler(req, res) {
       res.json(irmaSessionData);
     })
     .catch((error) => {
-      console.log(error);
+      logger.warn('Error starting IRMA session');
+      logger.debug(error);
       res.end(error.toString());
     });
 };

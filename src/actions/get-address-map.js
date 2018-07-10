@@ -1,6 +1,7 @@
 const divaSession = require('diva-irma-js/session');
 const config = require('./../config');
 const request = require('superagent');
+const logger = require('./../common/logger')('actions');
 
 /**
  * Request handler
@@ -24,6 +25,8 @@ module.exports = function requestHandler(req, res) {
         })
         .end((err, imageResponse) => {
           if (err) {
+            logger.warn('Error retrieving Bing maps image');
+            logger.debug(err);
             return res.sendStatus(500);
           }
 

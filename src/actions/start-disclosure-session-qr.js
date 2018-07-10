@@ -1,5 +1,6 @@
 const diva = require('diva-irma-js');
 const qr = require('qr-image');
+const logger = require('./../common/logger')('actions');
 
 /**
  * Request handler for starting a new disclosure session via GET request for a single attribute
@@ -20,6 +21,8 @@ module.exports = function requestHandler(req, res) {
         qr.image(irmaSessionData.qrContent, { type: 'png' }).pipe(res);
       })
       .catch((error) => {
+        logger.warn('Error starting IRMA session');
+        logger.debug(error);
         res.end(error.toString());
       });
   } else {
