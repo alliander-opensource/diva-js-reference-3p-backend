@@ -17,7 +17,7 @@ This backend in particular demonstrates:
 
 # Using the DIVA Library
 
-[Diva-irma-js](https://github.com/Alliander/diva-irma-js) contains of three main components, see that Github repo for details.
+Diva-irma-js consists of three main components, see [this repo](https://github.com/Alliander/diva-irma-js) for details, specifically the [README.md](https://github.com/Alliander/diva-irma-js#diva-irma-js).
 
 ## DIVA session management
 
@@ -135,7 +135,7 @@ Both this reference implementation as well as diva-irma-js use [log4js](https://
 
 ## Tests
 
-The tests for the backend require a working and configured IRMA Api Server, which is hard to do in a CI-environment. Therefore, tests aren't run yet automatically.
+The tests for the backend require a working and configured IRMA Api Server, which is hard to do in a CI-environment. Therefore, tests aren't run yet automatically yet. To some degree, basic tests for the backend are possible. We could also create a mock client, but that would require hooking in to [irmago](https://github.com/privacybydesign/irmago) for the client part. Scanning QR codes is hard to test and brittle in CI.
 
 ## IRMA
 
