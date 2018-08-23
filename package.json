@@ -33,7 +33,7 @@
     "cookie-parser": "1.4.3",
     "diva-irma-js": "2.0.0",
     "express": "4.16.1",
-    "log4js": "2.10.0",
+    "log4js": "3.0.5",
     "moment": "2.22.1",
     "nanoid": "1.0.3",
     "qr-image": "3.2.0",
