@@ -2,22 +2,52 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cookieEncrypter = require('cookie-encrypter');
+
 const diva = require('diva-irma-js');
+const divaExpress = require('diva-irma-js/express');
+const divaSession = require('diva-irma-js/session');
+
 const simpleSession = require('./modules/simple-session');
 const config = require('./config');
+const logger = require('./common/logger')('default');
 
-diva.init({
-  baseUrl: config.baseUrl,
-  apiKey: config.apiKey,
-  irmaApiServerUrl: config.irmaApiServerUrl,
-  irmaApiServerPublicKey: config.irmaApiServerPublicKey,
+const { jwtDisclosureRequestOptions, jwtSignatureRequestOptions, jwtIssueRequestOptions } = config;
+
+const divaStateOptions = {
   useRedis: config.useRedis,
   redisOptions: {
     host: config.redisHost,
     port: config.redisPort,
     password: config.redisPassword,
   },
-});
+  logLevel: config.divaLogLevel,
+};
+
+const divaOptions = {
+  baseUrl: config.baseUrl,
+  apiKey: config.apiKey,
+  irmaApiServerUrl: config.irmaApiServerUrl,
+  irmaApiServerPublicKey: config.irmaApiServerPublicKey,
+  jwtDisclosureRequestOptions: {
+    ...jwtDisclosureRequestOptions,
+    subject: 'verification_request',
+  },
+  jwtSignatureRequestOptions: {
+    ...jwtSignatureRequestOptions,
+    subject: 'signature_request',
+  },
+  jwtIssueRequestOptions: {
+    ...jwtIssueRequestOptions,
+    subject: 'issue_request',
+  },
+  ...divaStateOptions,
+  logLevel: config.divaLogLevel,
+};
+
+// Init diva
+diva.init(divaOptions);
+divaSession.init(divaStateOptions);
+divaExpress.setLogLevel(config.divaLogLevel);
 
 const app = express();
 app.use(cookieParser(config.cookieSecret));
@@ -31,16 +61,16 @@ app.use(simpleSession);
 app.get('/api/get-session', require('./actions/get-session'));
 app.get('/api/deauthenticate', require('./actions/deauthenticate'));
 
-// DIVA disclore endpoints
+// DIVA IRMA endpoints
 app.get('/api/start-disclosure-session', require('./actions/start-simple-disclosure-session'));
-app.post('/api/start-disclosure-session', require('./actions/start-disclosure-session'));
-app.get('/api/disclosure-status', require('./actions/disclosure-status'));
+app.post('/api/start-irma-session', require('./actions/start-irma-session'));
+app.get('/api/irma-session-status', require('./actions/irma-session-status'));
 
-app.use('/api/images/address.jpg', diva.requireAttributes(['pbdf.pbdf.idin.address', 'pbdf.pbdf.idin.city']), require('./actions/get-address-map'));
+app.use('/api/images/address.jpg', divaExpress.requireAttributes(divaSession, ['irma-demo.MijnOverheid.address.street', 'irma-demo.MijnOverheid.address.city']), require('./actions/get-address-map'));
 
 const server = app.listen(config.port, () => {
-  console.log(`Diva Reference Third Party backend listening on port ${config.port} !`); // eslint-disable-line no-console
-  console.log(`Diva version ${diva.version()}`); // eslint-disable-line no-console
+  logger.info(`Diva Reference Third Party backend listening on port ${config.port} !`);
+  logger.info(`Diva version ${diva.version()}`);
 });
 
 module.exports = { app, server };

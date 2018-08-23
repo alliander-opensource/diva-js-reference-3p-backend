@@ -11,3 +11,12 @@ data:
   USE_REDIS: "false"
   BASE_URL: "https://diva-js-reference-3p.appx.cloud"
   IRMA_API_SERVER_URL: "https://diva-irma-api-server.appx.cloud"
+  EAN_SERVICE_URL: "http://ean-rest-service.nebm-dev:4001/api/get-ean"
+  JWT_DISCLOSURE_ALGORITHM: 'RS256'
+  JWT_DISCLOSURE_ISSUER: 'diva'
+  JWT_SIGNATURE_ALGORITHM: 'RS256'
+  JWT_SIGNATURE_ISSUER: 'diva'
+  JWT_ISSUE_ALGORITHM: 'RS256'
+  JWT_ISSUE_ISSUER: 'diva'
+  LOG_LEVEL: 'warn'
+  DIVA_LOG_LEVEL: 'warn'

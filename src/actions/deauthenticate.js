@@ -1,5 +1,5 @@
 const simpleSession = require('./../modules/simple-session');
-const diva = require('diva-irma-js');
+const divaSession = require('diva-irma-js/session');
 
 /**
  * Request handler
@@ -9,7 +9,7 @@ const diva = require('diva-irma-js');
  * @returns {undefined}
  */
 module.exports = function requestHandler(req, res) {
-  diva.removeDivaSession(req.sessionId); // Clear attributes
+  divaSession.removeDivaSession(req.sessionId); // Clear attributes
 
   simpleSession.deauthenticate(req, res); // Create a new sessionId
 

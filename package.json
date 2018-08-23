@@ -29,8 +29,11 @@
   "dependencies": {
     "cookie-encrypter": "0.2.3",
     "cookie-parser": "1.4.3",
-    "diva-irma-js": "git+https://github.com/Alliander/diva-irma-js.git",
+    "diva-irma-js": "2.0.0",
     "express": "4.16.1",
+    "log4js": "3.0.5",
+    "moment": "2.22.1",
+    "nanoid": "1.0.3",
     "qr-image": "3.2.0",
     "superagent": "3.8.0",
     "uuid": "3.1.0"

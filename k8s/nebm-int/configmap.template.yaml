@@ -10,4 +10,13 @@ data:
   REDIS_PORT: "6379"
   USE_REDIS: "false"
   BASE_URL: "https://int-diva-js-reference-3p.appx.cloud"
-  IRMA_API_SERVER_URL: "https://dev-diva-irma-api-server.appx.cloud"
+  IRMA_API_SERVER_URL: "https://int-diva-irma-api-server.appx.cloud"
+  EAN_SERVICE_URL: "http://ean-rest-service.nebm-dev:4001/api/get-ean"
+  JWT_DISCLOSURE_ALGORITHM: 'none'
+  JWT_DISCLOSURE_ISSUER: 'diva'
+  JWT_SIGNATURE_ALGORITHM: 'none'
+  JWT_SIGNATURE_ISSUER: 'diva'
+  JWT_ISSUE_ALGORITHM: 'none'
+  JWT_ISSUE_ISSUER: 'diva'
+  LOG_LEVEL: 'debug'
+  DIVA_LOG_LEVEL: 'debug'

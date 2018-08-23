@@ -1,6 +1,7 @@
-const diva = require('diva-irma-js');
+const divaSession = require('diva-irma-js/session');
 const config = require('./../config');
 const request = require('superagent');
+const logger = require('./../common/logger')('actions');
 
 /**
  * Request handler
@@ -11,10 +12,10 @@ const request = require('superagent');
  */
 module.exports = function requestHandler(req, res) {
   const sessionId = req.sessionId;
-  diva.getAttributes(sessionId)
+  divaSession.getAttributes(sessionId)
     .then((attributes) => {
-      const street = attributes['pbdf.pbdf.idin.address'][0].replace(' ', '%20');
-      const city = attributes['pbdf.pbdf.idin.city'][0];
+      const street = attributes['irma-demo.MijnOverheid.address.street'][0].replace(' ', '%20');
+      const city = attributes['irma-demo.MijnOverheid.address.city'][0];
       const url = `https://dev.virtualearth.net/REST/v1/Imagery/Map/CanvasLight/Netherlands%20${city}%20${street}/1`;
       request
         .get(url)
@@ -24,6 +25,8 @@ module.exports = function requestHandler(req, res) {
         })
         .end((err, imageResponse) => {
           if (err) {
+            logger.warn('Error retrieving Bing maps image');
+            logger.debug(err);
             return res.sendStatus(500);
           }
 
