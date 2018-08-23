@@ -31,7 +31,7 @@
     "basic-auth": "2.0.0",
     "cookie-encrypter": "0.2.3",
     "cookie-parser": "1.4.3",
-    "diva-irma-js": "git+https://github.com/Alliander/diva-irma-js.git#9fec07ac3631e04acbfa720d5bacac7455798d15",
+    "diva-irma-js": "2.0.0",
     "express": "4.16.1",
     "log4js": "2.10.0",
     "moment": "2.22.1",
