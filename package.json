@@ -8,7 +8,6 @@
     "dev": "nodemon -e js,html src/server.js",
     "prod": "node src/server.js",
     "lint": "./node_modules/.bin/eslint -c .eslintrc src",
-    "migrate": "./node_modules/.bin/knex migrate:latest",
     "test": "mocha 'src/**/*.e2e.js'",
     "test:watch": "mocha --watch 'src/**/*.e2e.js'",
     "test:unit": "mocha 'src/**/*.spec.js'"
@@ -28,7 +27,6 @@
   ],
   "license": "BSD-3-Clause",
   "dependencies": {
-    "basic-auth": "2.0.0",
     "cookie-encrypter": "0.2.3",
     "cookie-parser": "1.4.3",
     "diva-irma-js": "2.0.0",
