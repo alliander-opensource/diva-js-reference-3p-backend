@@ -1,6 +1,7 @@
 const moment = require('moment');
 const diva = require('diva-irma-js');
 const divaSession = require('diva-irma-js/session');
+const nanoid = require('nanoid');
 
 const logger = require('./../common/logger')('actions');
 const { startEanIssueSession } = require('./../modules/ean-issue');
@@ -10,6 +11,15 @@ function startIssueSession(credentialType, sessionId) {
     case 'EAN':
       return divaSession.requireAttributes(sessionId, ['pbdf.pbdf.idin.address', 'pbdf.pbdf.idin.zipcode'])
         .then(() => startEanIssueSession(sessionId));
+    case 'FIELDLAB':
+      return diva.startIssueSession([{
+        credential: 'irma-demo.vngrealisatie.fieldlabparticipant',
+        validity: moment().add(6, 'months').unix(),
+        attributes: {
+          edition: 'Fieldlab Dienstverlening (Sept 2018)',
+          participantid: nanoid(),
+        },
+      }]);
     default:
       return diva.startIssueSession([{
         credential: 'irma-demo.MijnOverheid.address',
