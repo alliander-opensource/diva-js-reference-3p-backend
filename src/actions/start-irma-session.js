@@ -16,7 +16,7 @@ function startIssueSession(credentialType, sessionId) {
         credential: 'irma-demo.vngrealisatie.fieldlabparticipant',
         validity: moment().add(6, 'months').unix(),
         attributes: {
-          edition: 'Fieldlab Dienstverlening (Sept 2018)',
+          edition: 'Dienstverlening (Sept 2018)',
           participantid: nanoid(),
         },
       }]);
