@@ -29,7 +29,7 @@
   "dependencies": {
     "cookie-encrypter": "0.2.3",
     "cookie-parser": "1.4.3",
-    "diva-irma-js": "2.0.0",
+    "diva-irma-js": "git+https://github.com/Alliander/diva-irma-js.git#c9e45560940306e2d72f4496481c05a62c0bcb9c",
     "express": "4.16.1",
     "log4js": "3.0.5",
     "moment": "2.22.1",

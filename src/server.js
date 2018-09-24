@@ -42,6 +42,7 @@ const divaOptions = {
   },
   ...divaStateOptions,
   logLevel: config.divaLogLevel,
+  addDisclosureJwt: true,
 };
 
 // Init diva

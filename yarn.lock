@@ -202,12 +202,6 @@ balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
 
-basic-auth@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/basic-auth/-/basic-auth-2.0.0.tgz#015db3f353e02e56377755f962742e8981e7bbba"
-  dependencies:
-    safe-buffer "5.1.1"
-
 bcrypt-pbkdf@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/bcrypt-pbkdf/-/bcrypt-pbkdf-1.0.1.tgz#63bc5dcb61331b92bc05fd528953c33462a06f8d"
@@ -571,9 +565,9 @@ diff@3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.5.0.tgz#800c0dd1e0a8bfbc95835c202ad220fe317e5a12"
 
-diva-irma-js@2.0.0:
+"diva-irma-js@git+https://github.com/Alliander/diva-irma-js.git#c9e45560940306e2d72f4496481c05a62c0bcb9c":
   version "2.0.0"
-  resolved "https://registry.yarnpkg.com/diva-irma-js/-/diva-irma-js-2.0.0.tgz#6a1e84178ee3d1dd60718235477fa003271be251"
+  resolved "git+https://github.com/Alliander/diva-irma-js.git#c9e45560940306e2d72f4496481c05a62c0bcb9c"
   dependencies:
     bluebird "3.5.1"
     chai "4.1.2"
