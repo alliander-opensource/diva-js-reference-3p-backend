@@ -10,6 +10,22 @@ function startIssueSession(credentialType, sessionId) {
     case 'EAN':
       return divaSession.requireAttributes(sessionId, ['pbdf.pbdf.idin.address', 'pbdf.pbdf.idin.zipcode'])
         .then(() => startEanIssueSession(sessionId));
+    case 'VRN':
+      return diva.startIssueSession([{
+        credential: 'irma-demo.rdw.vrn',
+        validity: moment().add(6, 'months').unix(),
+        attributes: {
+          vrn: '00-00-00',
+        },
+      }]);
+    case 'BSN':
+      return diva.startIssueSession([{
+        credential: 'irma-demo.nijmegen.bsn',
+        validity: moment().add(6, 'months').unix(),
+        attributes: {
+          bsn: '302641828',
+        },
+      }]);
     default:
       return diva.startIssueSession([{
         credential: 'irma-demo.MijnOverheid.address',
